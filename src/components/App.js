@@ -7,7 +7,7 @@ import { container, content } from './styles'
 
 Webfont.load({ google: { families: [
 	'Work Sans: 300,400,700',
-	'Poppins: 300,400,700'
+	'Hind Vadodara: 300,400,700'
 ]}})
 
 const App = () => (

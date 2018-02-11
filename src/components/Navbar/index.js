@@ -8,7 +8,7 @@ export default class Navbar extends Component {
 			<div style={nav}>
 				<Image
 		      cloudName='ziro'
-		      width='25'
+		      width={window.innerWidth > 500 ? '25' : '20'}
 		      publicId='hamburguer-menu_emfhuo'
 		      version='1518314644'
 		      format='png'

@@ -6,7 +6,7 @@ const Footer = () => (
 	<div style={footer}>
 		<Image
       cloudName='ziro'
-      width='70'
+      width={window.innerWidth > 500 ? '70' : '60'}
       publicId='logo-original_lork1u'
       version='1508000699'
       format='png'
