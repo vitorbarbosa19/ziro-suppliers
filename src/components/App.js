@@ -2,7 +2,8 @@ import React from 'react'
 import Webfont from 'webfontloader'
 import FileUploader from './FileUploader/index'
 import Navbar from './Navbar/index'
-import { container } from './styles'
+import Footer from './Footer/index'
+import { container, content } from './styles'
 
 Webfont.load({ google: { families: [
 	'Work Sans: 300,400,700',
@@ -11,8 +12,11 @@ Webfont.load({ google: { families: [
 
 const App = () => (
 	<div style={container}>
-		<Navbar />
-		<FileUploader />
+		<div style={content}>
+			<Navbar />
+			<FileUploader />
+		</div>
+		<Footer />
 	</div>
 )
 

@@ -1,6 +1,10 @@
 export const container = {
 	height: '100vh',
-	padding: '0 3%',
 	display: 'flex',
-	flexDirection: 'column'
+	flexDirection: 'column',
+	justifyContent: 'space-between'
+}
+
+export const content = {
+	padding: '0 3%',
 }

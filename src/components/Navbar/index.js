@@ -9,7 +9,6 @@ export default class Navbar extends Component {
 				<Image
 		      cloudName='ziro'
 		      width='25'
-		      height='25'
 		      publicId='hamburguer-menu_emfhuo'
 		      version='1518314644'
 		      format='png'
