@@ -1,23 +1,17 @@
 import React from 'react'
-import Webfont from 'webfontloader'
-import FileUploader from './FileUploader/index'
-import Navbar from './Navbar/index'
-import Footer from './Footer/index'
-import { container, content } from './styles'
-
-Webfont.load({ google: { families: [
-	'Work Sans: 300,400,700',
-	'Hind Vadodara: 300,400,700'
-]}})
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import NewProduct from './routes/NewProduct'
+import ManageProducts from './routes/ManageProducts'
+import Page404 from './routes/Page404'
 
 const App = () => (
-	<div style={container}>
-		<div style={content}>
-			<Navbar />
-			<FileUploader />
-		</div>
-		<Footer />
-	</div>
+	<BrowserRouter>
+		<Switch>
+			<Route exact path='/' component={NewProduct} />
+			<Route path='/gerenciar' component={ManageProducts} />
+			<Route component={Page404} />
+		</Switch>
+	</BrowserRouter>
 )
 
 export default App

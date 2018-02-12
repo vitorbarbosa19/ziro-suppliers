@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Image } from 'cloudinary-react'
 import SvgClose from './SvgClose'
 import SvgUser from './SvgUser'
@@ -25,11 +26,11 @@ const Menu = (props) => (
 		<hr style={bar} />
 		<div style={item}>
 			{SvgNew(18,18,'rgba(48,62,77,0.80)')}
-			<span style={label}>Cadastrar produtos</span>
+			<Link to='/' style={label}>Cadastrar produtos</Link>
 		</div>
 		<div style={item}>
 			{SvgBox(18,18,'rgba(48,62,77,0.80)')}
-			<span style={label}>Gerenciar produtos</span>
+			<Link to='/gerenciar' style={label}>Gerenciar produtos</Link>
 		</div>
 	</div>
 )

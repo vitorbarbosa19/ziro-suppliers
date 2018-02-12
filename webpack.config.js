@@ -30,6 +30,10 @@ const config = {
 			{
 				test: /\.css$/,
 				use: ['style-loader', 'raw-loader']
+			},
+			{
+				test: /_redirects$/,
+				use: 'file-loader?name=_redirects'
 			}
 		]
 	},

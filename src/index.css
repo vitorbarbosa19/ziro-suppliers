@@ -9,6 +9,10 @@ body {
 	margin: 0;
 }
 
+a {
+	text-decoration: none;
+}
+
 @media (max-width: 800px) {
 	html {
 		font-size: 60%;
