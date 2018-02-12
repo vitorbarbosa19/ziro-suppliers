@@ -37,7 +37,8 @@ const config = {
 			}
 		]
 	},
-	plugins: [ new HtmlWebpackPlugin({ template: './src/index.html' }) ]
+	plugins: [ new HtmlWebpackPlugin({ template: './src/index.html' }) ],
+	devServer: { historyApiFallback: true } // config for webpack-dev-server when using react-router
 }
 
 // if (process.env.NODE_ENV !== 'production') {
