@@ -59,8 +59,8 @@ export const logout = {
 	padding: '7px 0px',
 	fontSize: '1.2rem',
 	fontFamily: 'Work Sans',
-	color: 'rgba(48,62,77,0.80)',
-	backgroundColor: '#FFF',
+	color: '#FFF',
+	backgroundColor: 'rgba(48,62,77,0.80)',
 	boxShadow: `0px 3px 10px 0px rgba(48,62,77,0.10)`,	
 }
 
