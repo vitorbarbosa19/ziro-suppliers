@@ -30,10 +30,6 @@ const config = {
 			{
 				test: /\.css$/,
 				use: ['style-loader', 'raw-loader']
-			},
-			{
-				test: /\.ico$/,
-				use: 'file-loader?name=[name].[ext]'
 			}
 		]
 	},
