@@ -10,7 +10,7 @@ export default class FileUploader extends Component {
 				<div style={dropZone}>
 					<Image
 			      cloudName='ziro'
-			      width={window.innerWidth > 500 ? '130' : '100'}
+			      width={window.innerWidth > 500 ? '120' : '100'}
 			      publicId='upload_s0ku2z'
 			      version='1518371844'
 			      format='png'
