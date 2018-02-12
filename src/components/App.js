@@ -1,16 +1,25 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import NewProduct from './routes/NewProduct'
+import CreateProducts from './routes/CreateProducts'
 import ManageProducts from './routes/ManageProducts'
 import Page404 from './routes/Page404'
+import Navbar from './Navbar/index'
+import Footer from './Footer/index'
+import { container, content } from './styles'
 
 const App = () => (
 	<BrowserRouter>
-		<Switch>
-			<Route exact path='/' component={NewProduct} />
-			<Route path='/gerenciar' component={ManageProducts} />
-			<Route component={Page404} />
-		</Switch>
+		<div style={container}>
+			<div style={content}>
+				<Navbar />
+					<Switch>
+						<Route exact path='/' component={CreateProducts} />
+						<Route path='/gerenciar' component={ManageProducts} />
+						<Route component={Page404} />
+					</Switch>
+			</div>
+			<Footer />
+		</div>
 	</BrowserRouter>
 )
 

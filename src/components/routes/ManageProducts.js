@@ -1,9 +1,8 @@
 import React from 'react'
+import ProductManager from '../ProductManager/index'
 
 const ManageProducts = () => (
-	<div>
-		Gerenciar produtos
-	</div>
+	<ProductManager />
 )
 
 export default ManageProducts
