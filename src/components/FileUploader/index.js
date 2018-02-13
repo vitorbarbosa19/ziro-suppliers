@@ -6,8 +6,8 @@ export default class FileUploader extends Component {
 	render() {
 		return (
 			<div style={uploader}>
-				<p style={title}>Cadastro de novos produtos</p>
 				<div style={dropZone}>
+					<p style={title}>Cadastro de novos produtos</p>
 					<Image
 			      cloudName='ziro'
 			      width={window.innerWidth > 500 ? '120' : '100'}
