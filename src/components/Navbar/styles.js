@@ -1,8 +1,10 @@
 export const nav = {
-	padding: '20px 0',
+	gridArea: 'navbar',
 	display: 'flex',
-	justifyContent: 'left',
-	alignItems: 'center'
+	alignItems: 'center',
+	paddingLeft: '25px',
+	backgroundColor: 'rgba(48, 62, 77, 1)',
+	boxShadow: `0px 3px 10px 0px rgba(48,62,77,0.10), 0px 6px 10px 0px rgba(48,62,77,0.05)`
 }
 
 export const items = (positionX) => { 
@@ -24,7 +26,6 @@ export const items = (positionX) => {
 export const item = {
 	display: 'flex',
 	justifyContent: 'center',
-	alignItems: 'center',
 	padding: '15px 0',
 }
 

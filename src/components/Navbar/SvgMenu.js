@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SvgNew = (props) => (
+const SvgMenu = (props) => (
 	<svg
 		style={props.cursor ? {cursor: 'pointer'} : null}
 		onClick={props.onClick || null}
@@ -13,9 +13,10 @@ const SvgNew = (props) => (
 		strokeLinecap={"round"}
 		strokeLinejoin={"round"}
 	>
-		<line x1={"18"} y1={"6"} x2={"6"} y2={"18"}></line>
-		<line x1={"6"} y1={"6"} x2={"18"} y2={"18"}></line>
+		<line x1={"3"} y1={"12"} x2={"21"} y2={"12"}></line>
+		<line x1={"3"} y1={"6"} x2={"21"} y2={"6"}></line>
+		<line x1={"3"} y1={"18"} x2={"21"} y2={"18"}></line>
 	</svg>
 )
 
-export default SvgNew
+export default SvgMenu

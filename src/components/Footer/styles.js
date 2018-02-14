@@ -1,5 +1,5 @@
 export const footer = {
-	padding: '30px 0',
+	gridArea: 'footer',
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center',

@@ -10,14 +10,14 @@ import { container, content } from './styles'
 const App = () => (
 	<BrowserRouter>
 		<div style={container}>
-			<div style={content}>
-				<Navbar />
+			<Navbar />
+				<div style={{gridArea: 'content', alignSelf: 'center'}}>
 					<Switch>
 						<Route exact path='/' component={CreateProducts} />
 						<Route path='/gerenciar' component={ManageProducts} />
 						<Route component={Page404} />
 					</Switch>
-			</div>
+				</div>		
 			<Footer />
 		</div>
 	</BrowserRouter>
