@@ -21,5 +21,5 @@ export const dropZone = {
 	color: 'rgba(48,62,77,0.80)',
 	border: '4px dashed rgba(48,62,77,0.10)',
 	borderRadius: '50px',
-	boxShadow: `0 0 0 1px white, 2px 2px 8px 2px rgba(48,62,77,0.10), 4px 4px 10px 4px rgba(48,62,77,0.05)`,
+	boxShadow: `0 0 0 1px white, 2px 2px 8px 2px rgba(48,62,77,0.10), 4px 4px 10px 4px rgba(48,62,77,0.05)`
 }
