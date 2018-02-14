@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Menu from './Menu'
-import SvgMenu from './SvgMenu'
+import SvgMenu from './icons/SvgMenu'
 import { nav } from './styles'
 
 export default class Navbar extends Component {

@@ -1,4 +1,5 @@
 export const manager = {
+	padding: '0 40px',
 	fontFamily: 'Work Sans',
 	fontSize: '1.6rem',
 	color: 'rgba(48,62,77,0.80)',
@@ -17,7 +18,7 @@ export const infoBlock = {
 	gridGap: '0 30px',
 	borderRadius: '6px',
 	overflow: 'hidden',
-	boxShadow: `2px 3px 10px 2px rgba(48,62,77,0.10), 4px 6px 10px 2px rgba(48,62,77,0.05)`,
+	boxShadow: `2px 3px 10px 3px rgba(48,62,77,0.10), 4px 6px 10px 3px rgba(48,62,77,0.05)`,
 }
 
 export const info = {
@@ -28,12 +29,11 @@ export const info = {
 export const label = {
 	fontFamily: 'Hind Vadodara',
 	textTransform: 'uppercase',
-	fontSize: '1.5rem',
-	fontWeight: '700'
+	fontSize: '1.5rem'
 }
 
 export const grid = {
-	borderTop: '2px solid rgba(48,62,77,0.40)',
+	borderTop: '1px solid rgba(48,62,77,0.40)',
 	padding: '15px',
 	display: 'grid',
 	gridTemplate: `

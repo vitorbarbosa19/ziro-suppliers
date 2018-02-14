@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import SvgClose from './SvgClose'
-import SvgUser from './SvgUser'
-import SvgBox from './SvgBox'
-import SvgNew from './SvgNew'
+import SvgClose from './icons/SvgClose'
+import SvgUser from './icons/SvgUser'
+import SvgBox from './icons/SvgBox'
+import SvgNew from './icons/SvgNew'
 
 import { items, close, profile, username, logout, bar, item, label } from './styles'
 
