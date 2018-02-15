@@ -75,3 +75,14 @@ export const username = {
 	fontFamily: 'Hind Vadodara',
 	fontWeight: '700'
 }
+
+export const search = {
+	border: 'none',
+	outline: 'none',
+	borderRadius: '30px',
+	padding: '5px 40px',
+	textAlign: 'center',
+	fontSize: '1.5rem',
+	fontFamily: 'Work Sans',
+	color: 'rgba(48,62,77,0.80)',
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Menu from './Menu'
+import Search from './Search'
 import SvgMenu from './icons/SvgMenu'
 import { nav } from './styles'
 
@@ -17,6 +18,7 @@ export default class Navbar extends Component {
 					onClick={this.openMenu}
 					cursor={true}
 				/>
+				{this.props.history.location.pathname === '/gerenciar' && <Search />}
 		   	<Menu 
 		   		menuIsOpen={this.state.menuIsOpen}
 		   		closeMenu={this.closeMenu}

@@ -10,7 +10,7 @@ import { container, content } from './styles'
 const App = () => (
 	<BrowserRouter>
 		<div style={container}>
-			<Navbar />
+			<Route component={Navbar} />
 				<div style={{gridArea: 'content', alignSelf: 'center'}}>
 					<Switch>
 						<Route exact path='/' component={CreateProducts} />
