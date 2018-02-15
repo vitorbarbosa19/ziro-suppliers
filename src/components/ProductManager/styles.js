@@ -1,8 +1,17 @@
 export const manager = {
 	padding: '60px 40px',
 	fontFamily: 'Work Sans',
-	fontSize: '1.6rem',
+	fontSize: '1.5rem',
 	color: 'rgba(48,62,77,0.80)',
+}
+
+export const title = {
+	margin: '10px 0',
+	textAlign: 'center',
+	fontFamily: 'Hind Vadodara',
+	fontSize: '2.4rem',
+	textTransform: 'uppercase',
+	color: 'rgba(48,62,77,0.80)'
 }
 
 export const product = {
@@ -11,8 +20,8 @@ export const product = {
 		'image referencia preco descricao' 1fr
 		'image estoque estoque estoque' 2fr
 		/ 200px 1fr 1fr 4fr`,
-	gridGap: '0 20px',
-	margin: '0 auto 60px',
+	gridGap: '0 40px',
+	margin: '0 auto',
 	width: '50%',
 	padding: '40px',
 	borderRadius: '6px',
@@ -46,7 +55,71 @@ export const grid = {
 		'c2 2-1 2-2 2-3 2-4 2-5 2-6 2-7'
 		'c3 3-1 3-2 3-3 3-4 3-5 3-6 3-7'
 		/ 16% 12% 12% 12% 12% 12% 12% 12%`,
-	justifyItems: 'center',
 	gridGap: '10px 0',
-	color: 'rgba(48,62,77,0.4)'
+	color: 'rgba(48,62,77,0.8)'
+}
+
+export const input = {
+	width: '100%',
+	border: 'none',
+	outline: 'none',
+	fontSize: '1.5rem',
+	color: 'rgba(48,62,77,0.5)'
+}
+
+export const stock = {
+	width: '25px',
+	border: 'none',
+	outline: 'none',
+	fontSize: '1.5rem',
+	color: 'rgba(48,62,77,0.5)'	
+}
+
+export const color = {
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	outline: 'none',
+	cursor: 'pointer',
+	width: '100%',
+	border: '1px solid rgba(48,62,77,0.80)',
+	borderRadius: '20px',
+	fontSize: '1.3rem',
+	fontFamily: 'Work Sans',
+	color: '#FFF',
+	backgroundColor: 'rgba(48,62,77,0.80)',
+	boxShadow: `0px 3px 10px 0px rgba(48,62,77,0.10), 0px 4px 12px 0px rgba(48,62,77,0.05)`,	
+}
+
+export const save = {
+	margin: '20px 5px 60px',
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	outline: 'none',
+	cursor: 'pointer',
+	width: '12%',
+	border: '1px solid rgba(48,62,77,0.80)',
+	borderRadius: '20px',
+	padding: '7px 0px',
+	fontSize: '1.3rem',
+	fontFamily: 'Work Sans',
+	color: '#FFF',
+	backgroundColor: 'rgba(48,62,77,0.80)',
+	boxShadow: `0px 3px 10px 0px rgba(48,62,77,0.10), 0px 4px 12px 0px rgba(48,62,77,0.05)`,
+}
+
+export const remove = {
+	margin: '20px 5px 60px',
+	WebkitAppearance: 'none',
+	MozAppearance: 'none',
+	outline: 'none',
+	cursor: 'pointer',
+	width: '12%',
+	border: '1px solid #F16B6F',
+	borderRadius: '20px',
+	padding: '7px 0px',
+	fontSize: '1.3rem',
+	fontFamily: 'Work Sans',
+	color: '#FFF',
+	backgroundColor: '#F16B6F',
+	boxShadow: `0px 3px 10px 0px rgba(48,62,77,0.10), 0px 4px 12px 0px rgba(48,62,77,0.05)`,
 }

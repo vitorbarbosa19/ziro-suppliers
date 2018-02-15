@@ -3,9 +3,8 @@ export const title = {
 	textAlign: 'center',
 	fontFamily: 'Hind Vadodara',
 	fontSize: '2.4rem',
-	fontWeight: '700',
 	textTransform: 'uppercase',
-	color: 'rgba(48,62,77,0.15)'
+	color: 'rgba(48,62,77,0.80)'
 }
 
 export const dropZone = {
