@@ -10,3 +10,4 @@ const auth = new auth0.WebAuth({
 })
 
 export const authLogin = () => auth.authorize()
+export const handleAuth = (handler) => auth.parseHash(handler)
