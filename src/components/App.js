@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import CreateProducts from './routes/CreateProducts'
 import ManageProducts from './routes/ManageProducts'
 import GoToLogin from './routes/GoToLogin'
+import AuthCallback from './routes/AuthCallback'
 import Page404 from './routes/Page404'
 import Navbar from './Navbar/index'
 import Footer from './Footer/index'
@@ -17,6 +18,7 @@ const App = () => (
 						<Route exact path='/' component={CreateProducts} />
 						<Route path='/gerenciar' component={ManageProducts} />
 						<Route path='/login' component={GoToLogin} />
+						<Route path='/callback' component={AuthCallback} />
 						<Route component={Page404} />
 					</Switch>
 				</div>		

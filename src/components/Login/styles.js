@@ -47,3 +47,19 @@ export const submit = {
 	backgroundColor: 'rgba(48,62,77,0.80)',
 	boxShadow: `0px 3px 10px 0px rgba(48,62,77,0.20), 0px 4px 12px 0px rgba(48,62,77,0.10)`,
 }
+
+export const loading = {
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center'
+}
+
+export const message = {
+	maxWidth: '300px',
+	margin: '30px 0',
+	fontFamily: 'Work Sans',
+	fontSize: '1.6rem',
+	color: 'rgba(48,62,77,0.60)',
+	textAlign: 'center'	
+}
+

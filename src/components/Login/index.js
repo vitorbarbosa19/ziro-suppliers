@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import { Image } from 'cloudinary-react'
-import auth from './auth'
+import { authLogin } from './auth'
 import { container, illustration, title, info, submit } from './styles'
 
 export default class Login extends Component {
-	login = () => {
-		const authLogin = new auth()
-		authLogin.login()
-	}
 	render() {
 		return(
 			<div style={container}>
@@ -22,7 +18,7 @@ export default class Login extends Component {
 	   		/>
 				<span style={title}>Gerenciador de Estoque</span>
 				<span style={info}>Faça login para ter acesso ao gerenciador de estoque</span>
-				<button style={submit} onClick={this.login}>Login</button>
+				<button style={submit} onClick={authLogin}>Login</button>
 			</div>
 		)
 	}
