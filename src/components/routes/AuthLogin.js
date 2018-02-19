@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from '../Login/index'
 
-const GoToLogin = () => ( <Login /> )
+const AuthLogin = () => ( <Login /> )
 
-export default GoToLogin
+export default AuthLogin

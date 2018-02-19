@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 import { Image } from 'cloudinary-react'
-import { authLogin } from './auth'
+import { authLogin, authSession } from './auth'
 import { container, illustration, title, info, submit } from './styles'
 
 export default class Login extends Component {
+	componentDidMount() {
+		authSession( (error, result) => {
+			console.log(error)
+			console.log(result)
+		})
+	}
 	render() {
 		return(
 			<div style={container}>

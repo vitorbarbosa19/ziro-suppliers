@@ -9,8 +9,10 @@ export default class Callback extends Component {
 	componentDidMount() {
 		handleAuth( (error, authResult) => {
 			if (!error && authResult && authResult.accessToken && authResult.idToken) {
+				console.log(authResult)
 				localStorage.setItem('access', authResult.accessToken)
 				localStorage.setItem('id', authResult.idToken)
+				// localStorage.setItem('expiry', expiresAt)
 				this.props.push('/')
 			} else {
 				this.setState({ errorOnAuth: true })

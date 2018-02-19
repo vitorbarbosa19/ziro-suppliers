@@ -7,3 +7,8 @@ export const container = {
 		'footer' 80px
 	`
 }
+
+export const content = {
+	gridArea: 'content',
+	alignSelf: 'center'
+}
