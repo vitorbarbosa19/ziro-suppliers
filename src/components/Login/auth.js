@@ -9,6 +9,7 @@ const auth = new auth0.WebAuth({
   scope: 'openid'
 })
 
-export const authLogin = () => auth.authorize()
+export const handleLogin = () => auth.authorize()
 export const handleAuth = (handler) => auth.parseHash(handler)
+export const checkAuth = () => localStorage.getItem('expiry') > new Date().getTime() ? 'authenticated' : null
 export const authSession = (callback) => auth.checkSession({}, callback)
