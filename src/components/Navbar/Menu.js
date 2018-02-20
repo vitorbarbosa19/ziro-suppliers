@@ -26,7 +26,7 @@ const Menu = (props) => (
 			/>
 			<span style={username}>Nua Duza</span>
 			<span>11.222.333/0001-44</span>
-			<button style={logout}>Logout</button>
+			<button style={logout} onClick={props.logout}>Logout</button>
 		</div>
 		<hr style={bar} />
 		<div style={item}>
