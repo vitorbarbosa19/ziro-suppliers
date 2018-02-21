@@ -56,7 +56,7 @@ export default class App extends Component {
 					<div style={content}>
 						<Switch>
 							<Route exact path='/' render={() => isAuthenticated ? <Redirect to='/cadastrar' /> : <Redirect to='/login' />} />
-							<Route path='/login' component={AuthLogin} />
+							<Route path='/login' render={() => isAuthenticated ? <Redirect to='/cadastrar' /> : <AuthLogin />} />
 							<Route path='/callback' render={() => <AuthCallback errorOnAuth={this.state.errorOnAuth} />} />
 							<Route path='/cadastrar' render={() => isAuthenticated ? <ProductCreate /> : <Redirect to='/login' />} />
 							<Route path='/gerenciar' render={() => isAuthenticated ? <ProductManage /> : <Redirect to='/login' />} />
