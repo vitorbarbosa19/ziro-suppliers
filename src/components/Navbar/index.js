@@ -31,7 +31,8 @@ export default class Navbar extends Component {
 					cursor={true}
 				/>
 				{this.props.history.location.pathname === '/gerenciar' && <Search />}
-		   	<Menu 
+		   	<Menu
+		   		isAuthenticated={this.props.isAuthenticated}
 		   		menuIsOpen={this.state.menuIsOpen}
 		   		closeMenu={this.closeMenu}
 		   		navigate={this.navigate}

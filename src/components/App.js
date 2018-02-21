@@ -50,7 +50,9 @@ export default class App extends Component {
 		const isAuthenticated = this.state.isAuthenticated
 		return (
 			<div style={container}>
-				<Route render={(props) => <Navbar updateParent={this.logout} {...props} />} />
+				<Route render={ (props) =>
+					<Navbar isAuthenticated={this.state.isAuthenticated} updateParent={this.logout} {...props} />}
+				/>
 					<div style={content}>
 						<Switch>
 							<Route exact path='/' render={() => isAuthenticated ? <Redirect to='/cadastrar' /> : <Redirect to='/login' />} />

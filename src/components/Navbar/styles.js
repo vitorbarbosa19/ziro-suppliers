@@ -99,3 +99,13 @@ export const search = {
 	fontFamily: 'Work Sans',
 	color: 'rgba(48,62,77,0.80)',
 }
+
+export const info = {
+	width: '280px',
+	margin: '30px auto 0px',
+	fontFamily: 'Work Sans',
+	fontSize: '1.6rem',
+	color: 'rgba(48,62,77,0.60)',
+	textAlign: 'center'
+}
+
