@@ -38,7 +38,7 @@ export const submit = {
 	outline: 'none',
 	cursor: 'pointer',
 	width: '70%',
-	border: 'none',
+	border: '1px solid rgba(48,62,77,0.80)',
 	borderRadius: '20px',
 	padding: '10px 0px',
 	fontSize: '1.6rem',
@@ -46,7 +46,14 @@ export const submit = {
 	color: '#FFF',
 	backgroundColor: 'rgba(48,62,77,0.80)',
 	boxShadow: `0px 3px 10px 0px rgba(48,62,77,0.20), 0px 4px 12px 0px rgba(48,62,77,0.10)`,
+	transition: '0.2s ease-in-out'
 }
+
+export const submitOnHover = Object.assign({}, submit, {
+	fontWeight: '700',
+	color: 'rgba(48,62,77,0.80)',
+	backgroundColor: '#FFF'
+})
 
 export const loading = {
 	display: 'flex',

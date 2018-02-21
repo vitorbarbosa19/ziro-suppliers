@@ -27,7 +27,12 @@ export const item = {
 	display: 'flex',
 	justifyContent: 'center',
 	padding: '15px 0',
+	cursor: 'pointer'
 }
+
+export const itemOnHover = Object.assign({}, item, {
+	backgroundColor: 'rgba(48,62,77,0.10)'
+})
 
 export const label = {
 	padding: '0 10px'
@@ -62,8 +67,16 @@ export const logout = {
 	fontFamily: 'Work Sans',
 	color: '#FFF',
 	backgroundColor: 'rgba(48,62,77,0.80)',
-	boxShadow: `0px 3px 10px 0px rgba(48,62,77,0.10)`,	
+	boxShadow: `0px 3px 10px 0px rgba(48,62,77,0.10)`,
+	transition: '0.2s ease-in-out',
 }
+
+export const logoutOnHover = Object.assign({}, logout, {
+	color: 'rgba(48,62,77,0.80)',
+	backgroundColor: '#FFF',
+	boxShadow: 'none',
+	fontWeight: '700'
+})
 
 export const bar = {
 	width: '80%',

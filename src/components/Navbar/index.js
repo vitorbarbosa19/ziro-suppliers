@@ -8,10 +8,15 @@ export default class Navbar extends Component {
 	state = { menuIsOpen: false }
 	openMenu = () => this.setState({ menuIsOpen: true })
 	closeMenu = () => this.setState({ menuIsOpen: false })
+	navigate = (route) => {
+		this.setState({ menuIsOpen: false })
+		this.props.history.push(route)
+	}
 	logout = () => {
 		localStorage.removeItem('access')
 		localStorage.removeItem('id')
 		localStorage.removeItem('expiry')
+		this.setState({ menuIsOpen: false })
 		this.props.history.push('/login')
 		this.props.updateParent()
 	}
@@ -29,6 +34,7 @@ export default class Navbar extends Component {
 		   	<Menu 
 		   		menuIsOpen={this.state.menuIsOpen}
 		   		closeMenu={this.closeMenu}
+		   		navigate={this.navigate}
 		   		logout={this.logout}
 		   	/>
 			</div>
