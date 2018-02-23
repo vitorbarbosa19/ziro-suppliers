@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import { initialState, changeUiState } from './utils/stateMachine'
+import { authSession, handleAuth, checkAuth } from './utils/auth'
 import AuthLogin from './routes/AuthLogin'
 import AuthCallback from './routes/AuthCallback'
 import ProductCreate from './routes/ProductCreate'
@@ -7,11 +9,11 @@ import ProductManage from './routes/ProductManage'
 import NotFound from './routes/NotFound'
 import Navbar from './Navbar/index'
 import Footer from './Footer/index'
-import { authSession, handleAuth, checkAuth } from './Login/auth'
 import { container, content } from './styles'
 
 export default class App extends Component {
 	state = {
+		uiState: initialState,
 		isAuthenticated: checkAuth() === 'authenticated',
 		errorOnAuth: false,
 		errorOnSilentAuth: false
@@ -45,6 +47,7 @@ export default class App extends Component {
 			})
 		}
 	}
+	changeUiState = changeUiState(this)
 	logout = () => this.setState({ isAuthenticated: false })
 	render() {
 		const isAuthenticated = this.state.isAuthenticated
@@ -56,7 +59,7 @@ export default class App extends Component {
 					<div style={content}>
 						<Switch>
 							<Route exact path='/' render={() => isAuthenticated ? <Redirect to='/cadastrar' /> : <Redirect to='/login' />} />
-							<Route path='/login' render={() => isAuthenticated ? <Redirect to='/cadastrar' /> : <AuthLogin />} />
+							<Route path='/login' render={() => isAuthenticated ? <Redirect to='/cadastrar' /> : <AuthLogin uiState={this.state.uiState} changeUiState={this.changeUiState} />} />
 							<Route path='/callback' render={() => <AuthCallback errorOnAuth={this.state.errorOnAuth} />} />
 							<Route path='/cadastrar' render={() => isAuthenticated ? <ProductCreate /> : <Redirect to='/login' />} />
 							<Route path='/gerenciar' render={() => isAuthenticated ? <ProductManage /> : <Redirect to='/login' />} />
