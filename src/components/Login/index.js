@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Image } from 'cloudinary-react'
 import { verifyCnpj } from './utils/verifyCnpj'
 import { formatCnpj } from './utils/formatCnpj'
-import { validateCnpj } from './utils/validateCnpj'
+import { parseCnpj } from './utils/parseCnpj'
 import { handleLogin } from '../utils/auth'
 import SvgUser from './icons/SvgUser'
 import SvgSpinner from './icons/SvgSpinner'
@@ -12,6 +12,8 @@ import { container, illustration, info, submit, submitOnHover,
 export default class Login extends Component {
 	state = {
 		cnpj: '',
+		cnpjIsInvalid: false,
+		isManufacturer: false,
 		buttonIsHovered: false,
 		tabOneIsActive: true,
 		tabTwoIsActive: false
@@ -20,7 +22,7 @@ export default class Login extends Component {
 	componentWillReceiveProps() { this.setState({ buttonIsHovered: false }) }
 	
 	verifyCnpj = verifyCnpj(this)
-	updateCnpj = (event) => { this.setState({ cnpj: validateCnpj(event.target.value) }) }
+	updateCnpj = (event) => { this.setState({ cnpj: parseCnpj(event.target.value) }) }
 	buttonHoverIn = () => { this.setState({ buttonIsHovered: true }) }
 	buttonHoverOut = () => { this.setState({ buttonIsHovered: false }) }
 	toggleTabOne = () => { this.setState({ tabOneIsActive: true, tabTwoIsActive: false }) }
@@ -65,6 +67,7 @@ export default class Login extends Component {
 										width={50}
 										height={50}
 									/>
+									<span style={info}>Aguarde enquanto verificamos seu CNPJ</span>
 								</div>
 							:
 								<div style={tabContent}>

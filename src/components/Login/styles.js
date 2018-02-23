@@ -123,6 +123,8 @@ export const icon = {
 
 export const spinner = {
 	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'center',
 	alignItems: 'center',
 	height: '100%'
 }
