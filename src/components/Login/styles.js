@@ -128,3 +128,14 @@ export const spinner = {
 	alignItems: 'center',
 	height: '100%'
 }
+
+export const error = {
+	display: 'flex',
+	alignItems: 'center',
+	maxWidth: '300px',
+	margin: '30px 0',
+	fontFamily: 'Work Sans',
+	fontSize: '1.6rem',
+	color: '#F16B6F',
+	textAlign: 'center'
+}
