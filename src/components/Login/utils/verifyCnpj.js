@@ -23,3 +23,7 @@ export const verifyCnpj = (that) => async () => {
 		that.props.changeUiState('VERIFY_CNPJ_ERROR')
 	}
 }
+
+// 19.629.091/0001-57
+// 08.622.108/0003-90
+// 01.818.489/0006-80

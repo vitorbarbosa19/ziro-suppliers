@@ -106,7 +106,7 @@ export const input = {
 	fontSize: '1.6rem',
 	fontFamily: 'Work Sans',
 	color: 'rgba(48,62,77,0.50)',
-	textAlign: 'center',
+	textIndent: '50px',
 	boxShadow: `0px 2px 10px 2px rgba(48,62,77,0.10), 0px 2px 15px 4px rgba(48,62,77,0.05)`,
 }
 

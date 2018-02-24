@@ -19,7 +19,7 @@ const message = {
 const NotFound = () => (
 	<div style={container}>
 		<SvgAlert width={'50'} height={'50'} />
-		<div style={message}> Essa página não existe. Verifique a URL digitada.</div>
+		<div style={message}>Essa página não existe. Verifique a URL digitada.</div>
 	</div>
 )
 
