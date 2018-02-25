@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { initialState, changeUiState } from './utils/stateMachine'
+import { stateMachine } from './utils/stateMachine'
 import { authSession, handleAuth, checkAuth } from './utils/auth'
 import AuthLogin from './routes/AuthLogin'
 import AuthCallback from './routes/AuthCallback'
@@ -13,7 +13,7 @@ import { container, content } from './styles'
 
 export default class App extends Component {
 	state = {
-		uiState: initialState,
+		uiState: stateMachine.initialState,
 		isAuthenticated: checkAuth() === 'authenticated',
 		errorOnAuth: false,
 		errorOnSilentAuth: false
@@ -47,7 +47,7 @@ export default class App extends Component {
 			})
 		}
 	}
-	changeUiState = changeUiState(this)
+	changeUiState = stateMachine.changeUiState(this)
 	logout = () => this.setState({ isAuthenticated: false })
 	render() {
 		const isAuthenticated = this.state.isAuthenticated

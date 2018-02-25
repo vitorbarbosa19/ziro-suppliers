@@ -1,15 +1,19 @@
-export const container = {
+export const outerContainer = {
 	display: 'flex',
 	flexDirection: 'column',
 	alignItems: 'center',
 	margin: '0 auto',
-	width: '100%',
 	maxWidth: '450px',
 	height: '700px',
 	borderRadius: '10px',
 	boxShadow: `0px 2px 8px 2px rgba(48,62,77,0.10), 0px 4px 10px 0px rgba(48,62,77,0.05)`,
 	backgroundColor: 'white',
 	overflow: 'hidden'
+}
+
+export const innerContainer = {
+	width: '100%',
+	height: '100%'
 }
 
 export const illustration = {
@@ -106,7 +110,7 @@ export const input = {
 	fontSize: '1.6rem',
 	fontFamily: 'Work Sans',
 	color: 'rgba(48,62,77,0.50)',
-	textIndent: '50px',
+	textAlign: 'center',
 	boxShadow: `0px 2px 10px 2px rgba(48,62,77,0.10), 0px 2px 15px 4px rgba(48,62,77,0.05)`,
 }
 
@@ -129,6 +133,11 @@ export const spinner = {
 	height: '100%'
 }
 
+export const contact = {
+	display: 'flex',
+	justifyContent: 'center'
+}
+
 export const error = {
 	display: 'flex',
 	alignItems: 'center',
@@ -138,4 +147,12 @@ export const error = {
 	fontSize: '1.6rem',
 	color: '#F16B6F',
 	textAlign: 'center'
+}
+
+export const uiError = {
+	height: '100%',
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'center',
+	alignItems: 'center'
 }
