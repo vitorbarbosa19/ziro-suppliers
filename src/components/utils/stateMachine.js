@@ -3,13 +3,13 @@
 export const stateMachine = {
 	initialState: 'idle',
 	// states
-	idle: { VERIFY_CNPJ: 'verifying_cnpj' },
+	idle: { VERIFY_CNPJ: 'verifying_cnpj', REGISTER: 'registering' },
 	logging_in: {},
 	logging_in_error: {},
 	verifying_cnpj: { VERIFY_CNPJ_OK: 'idle', VERIFY_CNPJ_ERROR: 'verifying_cnpj_error' },
 	verifying_cnpj_error: { VERIFY_CNPJ: 'verifying_cnpj' },
-	registering: {},
-	registering_error: {},
+	registering: { REGISTER_OK: 'idle', REGISTER_ERROR: 'registering_error' },
+	registering_error: { REGISTER: 'registering' },
 	fetch_profile: {},
 	fetch_profile_error: {},
 	uploading_products: {},

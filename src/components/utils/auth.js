@@ -13,4 +13,4 @@ export const handleLogin = () => auth.authorize()
 export const handleAuth = (handler) => auth.parseHash(handler)
 export const checkAuth = () => localStorage.getItem('expiry') > new Date().getTime() ? 'authenticated' : null
 export const authSession = (callback) => auth.checkSession({}, callback)
-export const signUp = () => auth.signup(data, callback)
+export const signup = (data, callback) => auth.signup(data, callback)

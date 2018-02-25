@@ -3,6 +3,7 @@ import { Image } from 'cloudinary-react'
 import { verifyCnpj } from './utils/verifyCnpj'
 import { formatCnpj } from './utils/formatCnpj'
 import { parseCnpj } from './utils/parseCnpj'
+import { registerUser } from './utils/registerUser'
 import { handleLogin } from '../utils/auth'
 import SvgAlert from './icons/SvgAlert'
 import SvgUser from './icons/SvgUser'
@@ -16,7 +17,11 @@ import { outerContainer, innerContainer, illustration, info, submit, submitOnHov
 export default class Login extends Component {
 	state = {
 		cnpj: '',
+		email: '',
+		password: '',
 		errorCnpj: '',
+		errorEmail: '',
+		errorPassword: '',
 		cnpjIsInvalid: false,
 		isManufacturer: false,
 		buttonIsHovered: false,
@@ -27,7 +32,10 @@ export default class Login extends Component {
 	componentWillReceiveProps = () => { this.setState({ buttonIsHovered: false }) }
 	/* other methods */
 	verifyCnpj = verifyCnpj(this)
+	registerUser = registerUser(this)
 	updateCnpj = (event) => { this.setState({ cnpj: parseCnpj(event.target.value) }) }
+	updateEmail = (event) => { this.setState({ email: event.target.value }) }
+	updatePassword = (event) => { this.setState({ password: event.target.value }) }
 	buttonHoverIn = () => { this.setState({ buttonIsHovered: true }) }
 	buttonHoverOut = () => { this.setState({ buttonIsHovered: false }) }
 	toggleTabOne = () => { this.setState({ tabOneIsActive: true, tabTwoIsActive: false }) }
@@ -84,102 +92,34 @@ export default class Login extends Component {
 										<span style={info}>Aguarde enquanto verificamos seu CNPJ</span>
 									</div>
 								:
-									this.state.isManufacturer ?
-										<div style={tabContent}>
-											<Image
-												style={illustration}
-									      cloudName='ziro'
-									      width={window.innerWidth > 500 ? '50' : '40'}
-									      publicId='ok-icon_bskbxm'
-									      version='1508212647'
-									      format='png'
-									      secure='true'
-								   		/>
-											<span style={info}>
-												Seu CNPJ de atacadista foi validado com sucesso!
-												<br />
-												Conclua seu cadastro preenchendo os campos abaixo
-											</span>
-											<div style={field}>
-												<div style={icon}>
-													<SvgUser
-														width={20}
-														height={20}
-														color={'rgba(48,62,77,0.80)'}
-													/>
-												</div>
-												<input
-													style={input}
-													type='email'
-													placeholder='Email'
-													// onChange={this.updateCnpj}
-													// value={formatCnpj(this.state.cnpj)}
-												/>
-											</div>
-											<div style={field}>
-												<div style={icon}>
-													<SvgPass
-														width={20}
-														height={20}
-														color={'rgba(48,62,77,0.80)'}
-													/>
-												</div>
-												<input
-													style={input}
-													type='password'
-													placeholder='Senha'
-													// onChange={this.updateCnpj}
-													// value={formatCnpj(this.state.cnpj)}
-												/>
-											</div>
-											<button
-												style={this.state.buttonIsHovered ? submitOnHover : submit}
-												// onClick={this.verifyCnpj}
-												onMouseEnter={this.buttonHoverIn}
-												onMouseLeave={this.buttonHoverOut}
-											>
-												Finalizar cadastro
-											</button>
+									this.props.uiState === 'registering' ?
+										<div style={spinner}>
+											<SvgSpinner
+												width={50}
+												height={50}
+											/>
+											<span style={info}>Aguarde enquanto concluimos seu cadastro</span>
 										</div>
 									:
-										this.state.cnpjIsInvalid ?
-											<div style={tabContent}>
-												<span style={illustration} />
-												<SvgAlert width={'50'} height={'50'} />
-												<span style={info}>
-													CNPJ inválido ou com ramo de atividade incorreto.
-													<br />
-													Se acredita que houve um engano, entre em contato conosco.
-													<br />
-													<div style={contact}>
-														<SvgWhats width={'20'} height={'20'} color={'rgba(48,62,77,0.50)'} />
-														<span>&nbsp;(11)98176-8088</span>
-													</div>
-												</span>
-												<button
-													style={this.state.buttonIsHovered ? submitOnHover : submit}
-													onClick={this.goBack}
-													onMouseEnter={this.buttonHoverIn}
-													onMouseLeave={this.buttonHoverOut}
-												>
-													Retornar
-												</button>
-											</div>
-										:
+										this.state.isManufacturer ?
 											<div style={tabContent}>
 												<Image
 													style={illustration}
 										      cloudName='ziro'
-										      width={window.innerWidth > 500 ? '160' : '100'}
-										      publicId='icon-register_ep7dtu_hpujvo'
-										      version='1519495593'
+										      width={window.innerWidth > 500 ? '50' : '40'}
+										      publicId='ok-icon_bskbxm'
+										      version='1508212647'
 										      format='png'
 										      secure='true'
 									   		/>
-												<span style={info}>Iremos verificar a validade do seu CNPJ de atacadista</span>
+												<span style={info}>
+													Seu CNPJ de atacadista foi validado com sucesso!
+													<br />
+													Conclua seu cadastro preenchendo os campos abaixo
+												</span>
 												<div style={field}>
 													<div style={icon}>
-														<SvgHome
+														<SvgUser
 															width={20}
 															height={20}
 															color={'rgba(48,62,77,0.80)'}
@@ -187,24 +127,107 @@ export default class Login extends Component {
 													</div>
 													<input
 														style={input}
-														type='text'
-														placeholder='CNPJ'
-														onChange={this.updateCnpj}
-														value={formatCnpj(this.state.cnpj)}
+														type='email'
+														placeholder='Email'
+														onChange={this.updateEmail}
+														value={this.state.email}
+													/>
+												</div>
+												<div style={field}>
+													<div style={icon}>
+														<SvgPass
+															width={20}
+															height={20}
+															color={'rgba(48,62,77,0.80)'}
+														/>
+													</div>
+													<input
+														style={input}
+														type='password'
+														placeholder='Senha'
+														onChange={this.updatePassword}
+														value={this.state.password}
 													/>
 												</div>
 												<button
 													style={this.state.buttonIsHovered ? submitOnHover : submit}
-													onClick={this.verifyCnpj}
+													onClick={this.registerUser}
 													onMouseEnter={this.buttonHoverIn}
 													onMouseLeave={this.buttonHoverOut}
 												>
-													Verificar
+													Finalizar cadastro
 												</button>
 												<span style={error}>
-													{this.state.errorCnpj ? <SvgAlert width={'20'} height={'20'} /> : null}&nbsp;{this.state.errorCnpj}
+													{this.state.errorEmail ? <SvgAlert width={'20'} height={'20'} /> : null}&nbsp;{this.state.errorEmail}
+												</span>
+												<span style={error}>
+													{this.state.errorPassword ? <SvgAlert width={'20'} height={'20'} /> : null}&nbsp;{this.state.errorPassword}
 												</span>
 											</div>
+										:
+											this.state.cnpjIsInvalid ?
+												<div style={tabContent}>
+													<span style={illustration} />
+													<SvgAlert width={'50'} height={'50'} />
+													<span style={info}>
+														CNPJ inválido ou com ramo de atividade incorreto.
+														<br />
+														Se acredita que houve um engano, entre em contato conosco.
+														<br />
+														<div style={contact}>
+															<SvgWhats width={'20'} height={'20'} color={'rgba(48,62,77,0.50)'} />
+															<span>&nbsp;(11)98176-8088</span>
+														</div>
+													</span>
+													<button
+														style={this.state.buttonIsHovered ? submitOnHover : submit}
+														onClick={this.goBack}
+														onMouseEnter={this.buttonHoverIn}
+														onMouseLeave={this.buttonHoverOut}
+													>
+														Retornar
+													</button>
+												</div>
+											:
+												<div style={tabContent}>
+													<Image
+														style={illustration}
+											      cloudName='ziro'
+											      width={window.innerWidth > 500 ? '160' : '100'}
+											      publicId='icon-register_ep7dtu_hpujvo'
+											      version='1519495593'
+											      format='png'
+											      secure='true'
+										   		/>
+													<span style={info}>Iremos verificar a validade do seu CNPJ de atacadista</span>
+													<div style={field}>
+														<div style={icon}>
+															<SvgHome
+																width={20}
+																height={20}
+																color={'rgba(48,62,77,0.80)'}
+															/>
+														</div>
+														<input
+															style={input}
+															type='text'
+															placeholder='CNPJ'
+															onChange={this.updateCnpj}
+															value={formatCnpj(this.state.cnpj)}
+														/>
+													</div>
+													<button
+														style={this.state.buttonIsHovered ? submitOnHover : submit}
+														onClick={this.verifyCnpj}
+														onMouseEnter={this.buttonHoverIn}
+														onMouseLeave={this.buttonHoverOut}
+													>
+														Verificar
+													</button>
+													<span style={error}>
+														{this.state.errorCnpj ? <SvgAlert width={'20'} height={'20'} /> : null}&nbsp;{this.state.errorCnpj}
+													</span>
+												</div>
 						}					
 					</div>
 				}
