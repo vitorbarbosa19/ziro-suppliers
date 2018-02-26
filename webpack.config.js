@@ -41,16 +41,19 @@ const config = {
 	devServer: { historyApiFallback: true } // config for webpack-dev-server when using react-router
 }
 
-// if (process.env.NODE_ENV !== 'production') {
-// 	const { backendUrl } = require('./credentials')
-// 	config.plugins.push(
-// 		new webpack.DefinePlugin({
-// 			'process.env': {
-// 				BACKEND_URL: JSON.stringify(backendUrl)
-// 			}
-// 		})
-// 	)
-// }
+if (process.env.NODE_ENV !== 'production') {
+	const credentials = require('./credentials')
+	config.plugins.push(
+		new webpack.DefinePlugin({
+			'process.env': {
+				AUTH_DOMAIN: JSON.stringify(credentials.AUTH_DOMAIN),
+				AUTH_ID: JSON.stringify(credentials.AUTH_ID),
+				AUTH_REDIRECT: JSON.stringify(credentials.AUTH_REDIRECT),
+				AUTH_AUDIENCE: JSON.stringify(credentials.AUTH_AUDIENCE),
+			}
+		})
+	)
+}
 
 if (process.env.NODE_ENV === 'production') {
 	config.plugins.push(

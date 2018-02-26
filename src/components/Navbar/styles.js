@@ -84,9 +84,13 @@ export const bar = {
 }
 
 export const username = {
+	width: '250px',
 	marginTop: '15px',
 	fontFamily: 'Hind Vadodara',
-	fontWeight: '700'
+	fontWeight: '700',
+	whiteSpace: 'nowrap',
+	overflow: 'hidden',
+	textOverflow: 'ellipsis'
 }
 
 export const search = {
