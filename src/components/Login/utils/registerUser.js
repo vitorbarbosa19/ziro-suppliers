@@ -15,6 +15,19 @@ export const registerUser = (that) => async () => {
 				that.props.changeUiState('REGISTER_ERROR')		
 			} else {
 				that.props.changeUiState('REGISTER_OK')
+				that.setState({
+					registerSuccess: true,
+					cnpj: '',
+					cnpjIsInvalid: false,
+					email: '',
+					errorCnpj: '',
+					errorEmail: '',
+					errorPassword: '',
+					isManufacturer: false,
+					password: '',
+					tabOneIsActive: true,
+					tabTwoIsActive: false
+				})
 			}
 		})
 	}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Image } from 'cloudinary-react'
 import SvgClose from './icons/SvgClose'
 import SvgUser from './icons/SvgUser'
@@ -80,14 +81,16 @@ export default class Menu extends Component {
 						</div>
 					:
 						<div style={info}>
-					    <Image
-					      cloudName='ziro'
-					      width='45'
-					      publicId='logo-round_kxn8sa'
-					      version='1508000699'
-					      format='png'
-					      secure='true'
-					    />
+					    <Link to='/'>
+						    <Image
+						      cloudName='ziro'
+						      width='45'
+						      publicId='logo-round_kxn8sa'
+						      version='1508000699'
+						      format='png'
+						      secure='true'
+						    />
+						  </Link>
 							<p>
 								O Gerenciador de Estoque é uma ferramenta que permite a você, atacadista, compartilhar
 								conosco grade, fotos e estoque dos seus produtos.

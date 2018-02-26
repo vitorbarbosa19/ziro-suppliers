@@ -11,8 +11,8 @@ import SvgPass from './icons/SvgPass'
 import SvgWhats from './icons/SvgWhats'
 import SvgHome from './icons/SvgHome'
 import SvgSpinner from './icons/SvgSpinner'
-import { outerContainer, innerContainer, illustration, info, submit, submitOnHover,
-	tabs, tab, tabActive, tabContent, input, field, icon, spinner, contact, error, uiError } from './styles'
+import { outerContainer, innerContainer, illustration, info, submit, submitOnHover, tabs, tab,
+	tabActive, tabContent, input, field, icon, spinner, contact, error, uiError, success } from './styles'
 
 export default class Login extends Component {
 	state = {
@@ -24,9 +24,10 @@ export default class Login extends Component {
 		errorPassword: '',
 		cnpjIsInvalid: false,
 		isManufacturer: false,
+		registerSuccess: false,
 		buttonIsHovered: false,
 		tabOneIsActive: true,
-		tabTwoIsActive: false
+		tabTwoIsActive: false,
 	}
 	/* lifecycle methods */
 	componentWillReceiveProps = () => { this.setState({ buttonIsHovered: false }) }
@@ -72,7 +73,21 @@ export default class Login extends Component {
 							      format='png'
 							      secure='true'
 						   		/>
-									<span style={info}>Faça login para ter acesso ao gerenciador de estoque</span>
+									{ this.state.registerSuccess ?
+											<span style={success}>
+												<Image
+										      cloudName='ziro'
+										      width={window.innerWidth > 500 ? '30' : '25'}
+										      publicId='ok-icon_bskbxm'
+										      version='1508212647'
+										      format='png'
+										      secure='true'
+									   		/>
+												Cadastro realizado com sucesso! Faça login abaixo
+											</span>
+										:
+											<span style={info}>Faça login para ter acesso ao gerenciador de estoque</span>
+									}
 									<button
 										style={this.state.buttonIsHovered ? submitOnHover : submit}
 										onClick={handleLogin}

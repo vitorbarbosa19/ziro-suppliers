@@ -156,3 +156,15 @@ export const uiError = {
 	justifyContent: 'center',
 	alignItems: 'center'
 }
+
+export const success = {
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center',
+	maxWidth: '300px',
+	margin: '30px 0',
+	fontFamily: 'Work Sans',
+	fontSize: '1.6rem',
+	color: '#BFE491',
+	textAlign: 'center'
+}
