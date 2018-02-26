@@ -58,8 +58,11 @@ if (process.env.NODE_ENV === 'production') {
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
-				// BACKEND_URL: JSON.stringify(process.env.BACKEND_URL),
-				NODE_ENV: JSON.stringify('production')
+				NODE_ENV: JSON.stringify('production'),
+				AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
+				AUTH_ID: JSON.stringify(process.env.AUTH_ID),
+				AUTH_REDIRECT: JSON.stringify(process.env.AUTH_REDIRECT),
+				AUTH_AUDIENCE: JSON.stringify(process.env.AUTH_AUDIENCE)
 			}
 		})
 	)
