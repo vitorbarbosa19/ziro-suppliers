@@ -6,11 +6,12 @@ const auth = new auth0.WebAuth({
   redirectUri: 'http://localhost:8080/callback',
   audience: 'https://vitorbarbosa19.auth0.com/userinfo',
   responseType: 'token id_token',
-  scope: 'openid'
+  scope: 'openid, profile'
 })
 
 export const handleLogin = () => auth.authorize()
 export const handleAuth = (handler) => auth.parseHash(handler)
 export const checkAuth = () => localStorage.getItem('expiry') > new Date().getTime() ? 'authenticated' : null
 export const authSession = (callback) => auth.checkSession({}, callback)
-export const signup = (data, callback) => auth.signup(data, callback)
+export const signup = (userData, callback) => auth.signup(userData, callback)
+export const profile = (accessToken, callback) => auth.client.userInfo(accessToken, callback)

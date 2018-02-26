@@ -33,6 +33,8 @@ export default class Navbar extends Component {
 				{this.props.history.location.pathname === '/gerenciar' && <Search />}
 		   	<Menu
 		   		isAuthenticated={this.props.isAuthenticated}
+		   		userName={this.props.userName}
+		   		userCnpj={this.props.userCnpj}
 		   		menuIsOpen={this.state.menuIsOpen}
 		   		closeMenu={this.closeMenu}
 		   		navigate={this.navigate}

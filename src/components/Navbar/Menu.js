@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Image } from 'cloudinary-react'
+import { formatCnpj } from './utils/formatCnpj'
 import SvgClose from './icons/SvgClose'
 import SvgUser from './icons/SvgUser'
 import SvgBox from './icons/SvgBox'
@@ -40,8 +41,8 @@ export default class Menu extends Component {
 									height={32}
 									color={'rgba(48,62,77,0.80)'}
 								/>
-								<span style={username}>Nua Duza</span>
-								<span>11.222.333/0001-44</span>
+								<span style={username}>{this.props.userName}</span>
+								<span>{formatCnpj(this.props.userCnpj)}</span>
 								<button
 									style={this.state.buttonIsHovered ? logoutOnHover : logout}
 									onClick={this.props.logout}

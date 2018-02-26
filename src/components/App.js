@@ -16,7 +16,9 @@ export default class App extends Component {
 		uiState: stateMachine.initialState,
 		isAuthenticated: checkAuth() === 'authenticated',
 		errorOnAuth: false,
-		errorOnSilentAuth: false
+		errorOnSilentAuth: false,
+		userName: '',
+		userCnpj: ''
 	}
 	componentDidMount() {
 		if (this.props.location.pathname === '/callback') {
@@ -25,7 +27,9 @@ export default class App extends Component {
 					localStorage.setItem('access', authResult.accessToken)
 					localStorage.setItem('id', authResult.idToken)
 					localStorage.setItem('expiry', authResult.expiresIn*1000 + new Date().getTime())
-					this.setState({ isAuthenticated: true })
+					const userName = authResult.idTokenPayload['http://name']
+					const userCnpj = authResult.idTokenPayload['http://cnpj']
+					this.setState({ isAuthenticated: true, userName, userCnpj })
 					this.props.history.push('/')
 				} else {
 					this.setState({ errorOnAuth: true })
@@ -45,6 +49,16 @@ export default class App extends Component {
 					console.log('Error during silent authentication. Access token not renewed.', error)
 				}
 			})
+			// if user is authenticated, grab profile information
+			profile(localStorage.getItem('access'), (error, profile) => {
+				if (!error) {
+					const userName = profile['http://name']
+					const userCnpj = profile['http://cnpj']
+					this.setState({ userName, userCnpj })
+				} else {
+					console.log('Error fetching profile information.', error)
+				}
+			})
 		}
 	}
 	changeUiState = stateMachine.changeUiState(this)
@@ -54,7 +68,7 @@ export default class App extends Component {
 		return (
 			<div style={container}>
 				<Route render={ (props) =>
-					<Navbar isAuthenticated={this.state.isAuthenticated} updateParent={this.logout} {...props} />}
+					<Navbar isAuthenticated={this.state.isAuthenticated} userName={this.state.userName} userCnpj={this.state.userCnpj} updateParent={this.logout} {...props} />}
 				/>
 					<div style={content}>
 						<Switch>
