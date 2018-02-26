@@ -13,12 +13,19 @@ export const verifyCnpj = (that) => async () => {
 					return /46.42-7-01|14.12-6-01/.test(activity.code)
 				})
 				if (isValidActivity.length)
-					that.setState({ isManufacturer: true, cnpjIsInvalid: false })
+					that.setState({
+						isManufacturer: true,
+						cnpjIsInvalid: false,
+						registerSuccess: false,
+						name: data.fantasia ? data.fantasia : data.nome,
+						city: data.municipio,
+						area: data.bairro,
+					})
 				else
-					that.setState({ isManufacturer: false, cnpjIsInvalid: true })
+					that.setState({ isManufacturer: false, cnpjIsInvalid: true, registerSuccess: false })
 			} else {
 				console.log('CNPJ inválido')
-				that.setState({ isManufacturer: false, cnpjIsInvalid: true })
+				that.setState({ isManufacturer: false, cnpjIsInvalid: true, registerSuccess: false })
 			}
 		} catch (error) {
 			console.log(error)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { stateMachine } from './utils/stateMachine'
-import { authSession, handleAuth, checkAuth } from './utils/auth'
+import { authSession, handleAuth, checkAuth, profile } from './utils/auth'
 import AuthLogin from './routes/AuthLogin'
 import AuthCallback from './routes/AuthCallback'
 import ProductCreate from './routes/ProductCreate'
@@ -33,8 +33,8 @@ export default class App extends Component {
 				}
 			})
 		}
-		// if session is still valid, grab a renewed access token and save it to local storage
 		if (this.state.isAuthenticated && this.props.location.pathname !== '/callback') {
+			// if session is still valid, grab a renewed access token and save it to local storage
 			authSession( (error, authResult) => {
 				if (!error && authResult && authResult.accessToken && authResult.idToken) {
 					localStorage.setItem('access', authResult.accessToken)

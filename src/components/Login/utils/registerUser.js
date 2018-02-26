@@ -8,7 +8,13 @@ export const registerUser = (that) => async () => {
 		signup({
 			connection: 'Username-Password-Authentication',
 			email: that.state.email,
-			password: that.state.password
+			password: that.state.password,
+			user_metadata: {
+				cnpj: that.state.cnpj,
+				name: that.state.name,
+				city: that.state.city,
+				area: that.state.area
+			}
 		}, (error) => {
 			if (error) {
 				console.log(error)
@@ -16,15 +22,19 @@ export const registerUser = (that) => async () => {
 			} else {
 				that.props.changeUiState('REGISTER_OK')
 				that.setState({
-					registerSuccess: true,
 					cnpj: '',
-					cnpjIsInvalid: false,
 					email: '',
+					password: '',
+					name: '',
+					city: '',
+					area: '',
 					errorCnpj: '',
 					errorEmail: '',
 					errorPassword: '',
+					cnpjIsInvalid: false,
 					isManufacturer: false,
-					password: '',
+					registerSuccess: true,
+					buttonIsHovered: false,
 					tabOneIsActive: true,
 					tabTwoIsActive: false
 				})

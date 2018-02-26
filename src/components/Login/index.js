@@ -19,6 +19,9 @@ export default class Login extends Component {
 		cnpj: '',
 		email: '',
 		password: '',
+		name: '',
+		city: '',
+		area: '',
 		errorCnpj: '',
 		errorEmail: '',
 		errorPassword: '',
@@ -45,7 +48,7 @@ export default class Login extends Component {
 	render() {
 		return(
 			<div style={outerContainer}>
-				{ this.props.uiState === 'verifying_cnpj_error' ?
+				{ this.props.uiState === 'verifying_cnpj_error' || this.props.uiState === 'registering_error' ?
 					<div style={uiError}>
 						<SvgAlert width={'50'} height={'50'} />
 						<span style={info}>
