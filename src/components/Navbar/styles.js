@@ -10,6 +10,7 @@ export const nav = {
 export const items = (positionX) => { 
 	return {
 		position: 'fixed',
+		zIndex: '1',
 		left: positionX,
 		top: '0',
 		width: window.innerWidth > 500 ? '350px' : '100%',
@@ -88,6 +89,7 @@ export const username = {
 	marginTop: '15px',
 	fontFamily: 'Hind Vadodara',
 	fontWeight: '700',
+	textAlign: 'center',
 	whiteSpace: 'nowrap',
 	overflow: 'hidden',
 	textOverflow: 'ellipsis'

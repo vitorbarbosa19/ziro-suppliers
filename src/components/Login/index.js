@@ -70,7 +70,7 @@ export default class Login extends Component {
 									<Image
 										style={illustration}
 							      cloudName='ziro'
-							      width={window.innerWidth > 500 ? '160' : '100'}
+							      width={window.innerWidth > 500 ? '160' : '120'}
 							      publicId='icon-login_ep7dtu'
 							      version='1518827830'
 							      format='png'
@@ -131,9 +131,9 @@ export default class Login extends Component {
 										      secure='true'
 									   		/>
 												<span style={info}>
-													Seu CNPJ de atacadista foi validado com sucesso!
+													CNPJ validado com sucesso!
 													<br />
-													Conclua seu cadastro preenchendo os campos abaixo
+													Você pode concluir seu cadastro
 												</span>
 												<div style={field}>
 													<div style={icon}>
@@ -211,7 +211,7 @@ export default class Login extends Component {
 													<Image
 														style={illustration}
 											      cloudName='ziro'
-											      width={window.innerWidth > 500 ? '160' : '100'}
+											      width={window.innerWidth > 500 ? '160' : '120'}
 											      publicId='icon-register_ep7dtu_hpujvo'
 											      version='1519495593'
 											      format='png'

@@ -2,10 +2,10 @@ export const outerContainer = {
 	display: 'flex',
 	flexDirection: 'column',
 	alignItems: 'center',
-	margin: '0 auto',
+	margin: window.innerWidth > 500 ? '0 auto' : '10% 5%',
 	maxWidth: '450px',
-	height: '700px',
-	borderRadius: '10px',
+	height: window.innerWidth > 500 ? '700px' : '500px',
+	borderRadius: window.innerWidth > 500 ? '10px' : '5px',
 	boxShadow: `0px 2px 8px 2px rgba(48,62,77,0.10), 0px 4px 10px 0px rgba(48,62,77,0.05)`,
 	backgroundColor: 'white',
 	overflow: 'hidden'
@@ -17,11 +17,11 @@ export const innerContainer = {
 }
 
 export const illustration = {
-	marginTop: '130px'
+	marginTop: window.innerWidth > 500 ? '130px' : '60px',
 }
 
 export const info = {
-	maxWidth: '300px',
+	maxWidth: window.innerWidth > 500 ? '300px' : '250px',
 	margin: '30px 0',
 	fontFamily: 'Work Sans',
 	fontSize: '1.6rem',
@@ -47,9 +47,9 @@ export const submit = {
 }
 
 export const submitOnHover = Object.assign({}, submit, {
-	fontWeight: '700',
-	color: 'rgba(48,62,77,0.80)',
-	backgroundColor: '#FFF'
+	fontWeight: window.innerWidth > 500 ? '700' : '400',
+	color: window.innerWidth > 500 ? 'rgba(48,62,77,0.80)' : '#FFF',
+	backgroundColor: window.innerWidth > 500 ? '#FFF' : 'rgba(48,62,77,0.80)'
 })
 
 export const loading = {
@@ -70,7 +70,7 @@ export const message = {
 export const tabs = {
 	display: 'flex',
 	width: '100%',
-	height: '60px',
+	height: window.innerWidth > 500 ? '60px' : '50px',
 	fontFamily: 'Work Sans',
 	fontSize: '1.6rem',
 	color: 'rgba(48,62,77,0.60)',
@@ -161,7 +161,7 @@ export const success = {
 	display: 'flex',
 	flexDirection: 'column',
 	alignItems: 'center',
-	maxWidth: '300px',
+	maxWidth: window.innerWidth > 500 ? '300px' : '250px',
 	margin: '30px 0',
 	fontFamily: 'Work Sans',
 	fontSize: '1.6rem',
