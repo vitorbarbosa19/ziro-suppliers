@@ -9,7 +9,7 @@ export default class FileUploader extends Component {
 				<p style={title}>Cadastro de produtos</p>
 				<Image
 		      cloudName='ziro'
-		      width={window.innerWidth > 500 ? '120' : '100'}
+		      width={window.innerWidth > 500 ? '120' : '90'}
 		      publicId='upload_s0ku2z'
 		      version='1518371844'
 		      format='png'

@@ -70,7 +70,7 @@ export default class Login extends Component {
 									<Image
 										style={illustration}
 							      cloudName='ziro'
-							      width={window.innerWidth > 500 ? '160' : '120'}
+							      width={window.innerWidth > 500 ? '140' : '120'}
 							      publicId='icon-login_ep7dtu'
 							      version='1518827830'
 							      format='png'
@@ -211,7 +211,7 @@ export default class Login extends Component {
 													<Image
 														style={illustration}
 											      cloudName='ziro'
-											      width={window.innerWidth > 500 ? '160' : '120'}
+											      width={window.innerWidth > 500 ? '140' : '120'}
 											      publicId='icon-register_ep7dtu_hpujvo'
 											      version='1519495593'
 											      format='png'

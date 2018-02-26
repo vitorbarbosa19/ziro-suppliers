@@ -4,7 +4,7 @@ export const outerContainer = {
 	alignItems: 'center',
 	margin: window.innerWidth > 500 ? '0 auto' : '10% 5%',
 	maxWidth: '450px',
-	height: window.innerWidth > 500 ? '700px' : '500px',
+	height: window.innerWidth > 1500 ? '700px' : window.innerWidth > 500 ? '550px' : '500px',
 	borderRadius: window.innerWidth > 500 ? '10px' : '5px',
 	boxShadow: `0px 2px 8px 2px rgba(48,62,77,0.10), 0px 4px 10px 0px rgba(48,62,77,0.05)`,
 	backgroundColor: 'white',
@@ -17,7 +17,7 @@ export const innerContainer = {
 }
 
 export const illustration = {
-	marginTop: window.innerWidth > 500 ? '130px' : '60px',
+	marginTop: window.innerWidth > 1500 ? '130px' : '60px',
 }
 
 export const info = {
