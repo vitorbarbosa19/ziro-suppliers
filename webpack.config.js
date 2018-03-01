@@ -50,6 +50,7 @@ if (process.env.NODE_ENV !== 'production') {
 				AUTH_ID: JSON.stringify(credentials.AUTH_ID),
 				AUTH_REDIRECT: JSON.stringify(credentials.AUTH_REDIRECT),
 				AUTH_AUDIENCE: JSON.stringify(credentials.AUTH_AUDIENCE),
+				GRAPHQL_ENDPOINT: JSON.stringify(credentials.GRAPHQL_ENDPOINT)
 			}
 		})
 	)
@@ -65,7 +66,8 @@ if (process.env.NODE_ENV === 'production') {
 				AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
 				AUTH_ID: JSON.stringify(process.env.AUTH_ID),
 				AUTH_REDIRECT: JSON.stringify(process.env.AUTH_REDIRECT),
-				AUTH_AUDIENCE: JSON.stringify(process.env.AUTH_AUDIENCE)
+				AUTH_AUDIENCE: JSON.stringify(process.env.AUTH_AUDIENCE),
+				GRAPHQL_ENDPOINT: JSON.stringify(process.env.GRAPHQL_ENDPOINT)
 			}
 		})
 	)

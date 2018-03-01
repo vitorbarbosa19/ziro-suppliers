@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
 import { stateMachine } from './utils/stateMachine'
 import { authSession, handleAuth, checkAuth, profile } from './utils/auth'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import AuthLogin from './routes/AuthLogin'
 import AuthCallback from './routes/AuthCallback'
 import ProductCreate from './routes/ProductCreate'

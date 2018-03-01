@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
+import { withRouter } from 'react-router-dom'
+import createProduct from './queries/createProduct'
 import { Image } from 'cloudinary-react'
 import { dropZone, title } from './styles'
 
-export default class FileUploader extends Component {
+class FileUploader extends Component {
+	componentDidMount() {
+		this.props.mutate().then( ({ data }) => { console.log(data) }).catch( (error) => console.log(error))
+	}
 	render() {
 		return (
 			<div style={dropZone}>
@@ -20,3 +26,6 @@ export default class FileUploader extends Component {
 		)
 	}
 }
+
+const FileUploaderWithData = graphql(createProduct)(FileUploader)
+export default withRouter(FileUploaderWithData)
