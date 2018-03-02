@@ -1,7 +1,7 @@
-import gql from 'graphql-tag'
+import { gql } from 'apollo-boost'
 
 export default gql`
-	mutation createProduct {
+	mutation CREATE_PRODUCT {
 		createProduct(
 			brand: "Luzia Fazzolli",
 			description: "Blusa com babados",
