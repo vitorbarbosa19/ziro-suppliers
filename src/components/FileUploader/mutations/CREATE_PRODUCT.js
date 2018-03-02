@@ -1,14 +1,21 @@
 import { gql } from 'apollo-boost'
 
 export default gql`
-	mutation CREATE_PRODUCT {
-		createProduct(
-			brand: "Luzia Fazzolli",
-			description: "Blusa com babados",
-			price: 239,
-			reference: "008-2491"
-		) {
-			brand
+	mutation CREATE_PRODUCT (
+		$brand: String!,
+		$reference: String!,
+		$description: String!,
+		$price: Int!
+	) {
+			createProduct (
+				brand: $brand,
+				reference: $reference,
+				description: $description,
+				price: $price
+			) {
+					brand
+					reference
+					description
+				}
 		}
-	}
 `
