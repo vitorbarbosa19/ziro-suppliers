@@ -2,15 +2,21 @@ import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 import CREATE_PRODUCT from './mutations/CREATE_PRODUCT'
 import { Image } from 'cloudinary-react'
-import { dropZone, title } from './styles'
+import { dropZone, title, button } from './styles'
 
 export default class FileUploader extends Component {
+	state = { products: '' }
 	createProduct = async (mutate) => {
 		try {
 			console.log(await mutate())
 		} catch(error) {
 			console.log(error)
 		}
+	}
+	handleFile = () => {
+		const reader = new FileReader()
+		reader.onload = () => this.setState({ products: reader.result })
+		reader.readAsText(...this.uploadButton.files)
 	}
 	render = () => (
 		<Mutation
@@ -35,6 +41,12 @@ export default class FileUploader extends Component {
 						<p onClick={this.createProduct.bind(null, mutate)}>
 							Arraste aqui um arquivo .CSV ou imagens
 						</p>
+						<input
+							style={button}
+							type='file'
+							onChange={this.handleFile}
+							ref={input => this.uploadButton = input}
+						/>
 					</div>
 			)}
 		</Mutation>
