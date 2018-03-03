@@ -5,7 +5,7 @@ export default gql`
 		$brand: String!,
 		$reference: String!,
 		$description: String!,
-		$price: Int!
+		$price: String!
 	) {
 			createProduct (
 				brand: $brand,

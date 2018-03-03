@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 import CREATE_PRODUCT from './mutations/CREATE_PRODUCT'
+import parseCSV from './utils/parseCSV'
 import { Image } from 'cloudinary-react'
 import { dropZone, title, button } from './styles'
 
 export default class FileUploader extends Component {
-	state = { products: '' }
+	state = {
+		description: '',
+		price: '',
+		reference: ''
+	}
 	createProduct = async (mutate) => {
 		try {
 			console.log(await mutate())
@@ -15,17 +20,24 @@ export default class FileUploader extends Component {
 	}
 	handleFile = () => {
 		const reader = new FileReader()
-		reader.onload = () => this.setState({ products: reader.result })
+		reader.onload = () => {
+			const products = parseCSV(reader.result)
+			this.setState({
+				description: products[0].Descrição,
+				price: products[0].Preço,
+				reference: products[0].Referência
+			})
+		}
 		reader.readAsText(...this.uploadButton.files)
 	}
 	render = () => (
 		<Mutation
 			mutation={CREATE_PRODUCT}
 			variables={{
-				brand: 'Luzia Fazzolli',
-				description: 'Blusa com babados',
-				price: 239,
-				reference: '008-2491'
+				brand: this.props.userName,
+				description: this.state.description,
+				price: this.state.price,
+				reference: this.state.reference
 		}}>
 			{ mutate => (
 					<div style={dropZone}>
