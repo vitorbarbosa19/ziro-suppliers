@@ -3,13 +3,14 @@ import { Mutation } from 'react-apollo'
 import CREATE_PRODUCT from './mutations/CREATE_PRODUCT'
 import parseCSV from './utils/parseCSV'
 import { Image } from 'cloudinary-react'
-import { dropZone, title, button } from './styles'
+import { dropZone, title, uploadOnHover, upload } from './styles'
 
 export default class FileUploader extends Component {
 	state = {
 		description: '',
 		price: '',
-		reference: ''
+		reference: '',
+		buttonIsHovered: false
 	}
 	createProduct = async (mutate) => {
 		try {
@@ -30,6 +31,11 @@ export default class FileUploader extends Component {
 		}
 		reader.readAsText(...this.uploadButton.files)
 	}
+	clickInput = () => {
+		this.uploadButton.click()
+	}
+	buttonHoverIn = () => { this.setState({ buttonIsHovered: true }) }
+	buttonHoverOut = () => { this.setState({ buttonIsHovered: false }) }
 	render = () => (
 		<Mutation
 			mutation={CREATE_PRODUCT}
@@ -54,11 +60,19 @@ export default class FileUploader extends Component {
 							Arraste aqui um arquivo .CSV ou imagens
 						</p>
 						<input
-							style={button}
+							style={{display: 'none'}}
 							type='file'
 							onChange={this.handleFile}
 							ref={input => this.uploadButton = input}
 						/>
+						<button
+							style={this.state.buttonIsHovered ? uploadOnHover : upload}
+							onMouseEnter={this.buttonHoverIn}
+							onMouseLeave={this.buttonHoverOut}
+							onClick={this.clickInput}
+						>
+							Procurar arquivo
+						</button>
 					</div>
 			)}
 		</Mutation>
