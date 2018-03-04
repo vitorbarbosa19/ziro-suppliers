@@ -123,3 +123,9 @@ export const remove = {
 	backgroundColor: '#F16B6F',
 	boxShadow: `0px 3px 10px 0px rgba(48,62,77,0.10), 0px 4px 12px 0px rgba(48,62,77,0.05)`,
 }
+
+export const warning = {
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center'
+}
