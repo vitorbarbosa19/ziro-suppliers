@@ -31,6 +31,9 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.39",
     "apollo-boost": "^0.1.1",
+    "apollo-cache-inmemory": "^1.1.9",
+    "apollo-client": "^2.2.5",
+    "apollo-link-batch-http": "^1.2.0",
     "auth0-js": "^9.2.3",
     "axios": "^0.17.1",
     "cloudinary-react": "^1.0.6",
