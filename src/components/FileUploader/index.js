@@ -10,6 +10,9 @@ export default class FileUploader extends Component {
 		description: '',
 		price: '',
 		reference: '',
+		color: '',
+		size: '',
+		quantity: '',
 		buttonIsHovered: false
 	}
 	createProduct = async (mutate) => {
@@ -23,10 +26,14 @@ export default class FileUploader extends Component {
 		const reader = new FileReader()
 		reader.onload = () => {
 			const products = parseCSV(reader.result)
+			console.log(products)
 			this.setState({
 				description: products[0].Descrição,
 				price: products[0].Preço,
-				reference: products[0].Referência
+				reference: products[0].Referência,
+				color: products[0].Cor,
+				size: products[0].TAM,
+				quantity: products[0]["Estoque atual"]
 			})
 		}
 		reader.readAsText(...this.uploadButton.files)
@@ -43,7 +50,12 @@ export default class FileUploader extends Component {
 				brand: this.props.userName,
 				description: this.state.description,
 				price: this.state.price,
-				reference: this.state.reference
+				reference: this.state.reference,
+				grid: {
+					color: this.state.color,
+					size: this.state.size,
+					quantity: this.state.quantity
+				}
 		}}>
 			{ mutate => (
 					<div style={dropZone}>

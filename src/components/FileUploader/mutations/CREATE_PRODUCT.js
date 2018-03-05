@@ -5,13 +5,15 @@ export default gql`
 		$brand: String!,
 		$reference: String!,
 		$description: String!,
-		$price: String!
+		$price: String!,
+		$grid: ProductgridGrid
 	) {
 			createProduct (
 				brand: $brand,
 				reference: $reference,
 				description: $description,
-				price: $price
+				price: $price,
+				grid: $grid
 			) {
 					brand
 					reference
