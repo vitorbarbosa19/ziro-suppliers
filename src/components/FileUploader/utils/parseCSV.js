@@ -4,7 +4,7 @@ const parseCSV = (csvFile) => {
     const characteristics = titles.split(',')
     const values = product.split(',')
     return Object.assign({}, ...values.map( (value, index) => {
-      const characteristic = characteristics[index]
+      const characteristic = characteristics[index].trim()
       return {
         [characteristic]: value.trim()
       }

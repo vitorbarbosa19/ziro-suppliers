@@ -15,21 +15,24 @@ class FileUploader extends Component {
 			const products = parseCSV(reader.result)
 			console.log(products)
 			try {
-				await Promise.all(products.map( async (product) => {
-					console.log(await this.props.mutate({
+				const result = await Promise.all(products.map( async (product) => {
+					return await this.props.mutate({
 						variables: {
 							brand: this.props.userName,
+							reference: product.Referência,
 							description: product.Descrição,
 							price: product.Preço,
-							reference: product.Referência,
 							grid: {
 								color: product.Cor,
-								size: product.TAM,
-								quantity: product["Estoque atual"]
+								size: product.Tamanho,
+								quantity: product.Estoque
 							}
 						}
-					}))
+					})
 				}))
+				/* clear file selection so that user can select again */
+				this.uploadButton.value = ''
+				console.log(result)
 			} catch (error) {
 				console.log(error)
 			}
