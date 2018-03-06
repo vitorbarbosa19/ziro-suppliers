@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
+import { withApollo } from 'react-apollo'
+import CHECK_PRODUCT from './queries/CHECK_PRODUCT'
 import CREATE_PRODUCT from './mutations/CREATE_PRODUCT'
+import UPDATE_PRODUCT from './mutations/UPDATE_PRODUCT'
 import parseCSV from './utils/parseCSV'
 import { Image } from 'cloudinary-react'
 import { dropZone, title, uploadOnHover, upload } from './styles'
@@ -13,22 +15,46 @@ class FileUploader extends Component {
 		const reader = new FileReader()
 		reader.onload = async () => {
 			const products = parseCSV(reader.result)
-			console.log(products)
 			try {
 				const result = await Promise.all(products.map( async (product) => {
-					return await this.props.mutate({
+					const { data: { Product: productExists } } = await this.props.client.query({
+						query: CHECK_PRODUCT,
 						variables: {
-							brand: this.props.userName,
-							reference: product.Referência,
-							description: product.Descrição,
-							price: product.Preço,
-							grid: {
-								color: product.Cor,
-								size: product.Tamanho,
-								quantity: product.Estoque
-							}
+							reference: product.Referência
 						}
 					})
+					console.log(productExists)
+					console.log(productExists.id)
+					if (productExists) {
+						return await this.props.client.mutate({
+							mutation: UPDATE_PRODUCT,
+							variables: {
+								id: productExists.id,
+								description: product.Descrição,
+								price: product.Preço,
+								grid: {
+									color: product.Cor,
+									size: product.Tamanho,
+									quantity: product.Estoque
+								}								
+							}
+						})
+					} else {
+						return await this.props.client.mutate({
+							mutation: CREATE_PRODUCT,
+							variables: {
+								brand: this.props.userName,
+								reference: product.Referência,
+								description: product.Descrição,
+								price: product.Preço,
+								grid: {
+									color: product.Cor,
+									size: product.Tamanho,
+									quantity: product.Estoque
+								}
+							}
+						})
+					}
 				}))
 				/* clear file selection so that user can select again */
 				this.uploadButton.value = ''
@@ -74,4 +100,4 @@ class FileUploader extends Component {
 	)
 }
 
-export default graphql(CREATE_PRODUCT)(FileUploader)
+export default withApollo(FileUploader)
