@@ -6,7 +6,7 @@ export default gql`
 		$reference: String!,
 		$description: String!,
 		$price: String!,
-		$grid: ProductgridGrid
+		$grid: ProductgridGrid!
 	) {
 			createProduct (
 				brand: $brand,

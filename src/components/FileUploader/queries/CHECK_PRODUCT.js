@@ -9,6 +9,9 @@ export default gql`
 			) {
 					id
 					reference
+					grid {
+						id
+					}
 				}
 		}
 `

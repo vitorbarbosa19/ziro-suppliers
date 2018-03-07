@@ -4,18 +4,15 @@ export default gql`
 	mutation UPDATE_PRODUCT (
 		$id: ID!,
 		$description: String!,
-		$price: String!,
-		$grid: ProductgridGrid
+		$price: String!
 	) {
 			updateProduct (
 				id: $id,
 				description: $description,
-				price: $price,
-				grid: $grid
+				price: $price
 			) {
-					brand
+					id
 					reference
-					description
 				}
 		}
 `

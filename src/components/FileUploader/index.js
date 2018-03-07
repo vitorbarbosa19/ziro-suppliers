@@ -3,6 +3,7 @@ import { withApollo } from 'react-apollo'
 import CHECK_PRODUCT from './queries/CHECK_PRODUCT'
 import CREATE_PRODUCT from './mutations/CREATE_PRODUCT'
 import UPDATE_PRODUCT from './mutations/UPDATE_PRODUCT'
+import UPDATE_GRID from './mutations/UPDATE_GRID'
 import parseCSV from './utils/parseCSV'
 import { Image } from 'cloudinary-react'
 import { dropZone, title, uploadOnHover, upload } from './styles'
@@ -23,22 +24,25 @@ class FileUploader extends Component {
 							reference: product.Referência
 						}
 					})
-					console.log(productExists)
-					console.log(productExists.id)
 					if (productExists) {
-						return await this.props.client.mutate({
+						const { data: { updateProduct: productUpdated } } = await this.props.client.mutate({
 							mutation: UPDATE_PRODUCT,
 							variables: {
 								id: productExists.id,
 								description: product.Descrição,
-								price: product.Preço,
-								grid: {
-									color: product.Cor,
-									size: product.Tamanho,
-									quantity: product.Estoque
-								}								
+								price: product.Preço
 							}
 						})
+						const { data: { updateGrid: gridUpdated } } = await this.props.client.mutate({
+							mutation: UPDATE_GRID,
+							variables: {
+								id: productExists.grid.id,
+								color: product.Cor,
+								size: product.Tamanho,
+								quantity: product.Estoque
+							}
+						})
+						return { productUpdated, gridUpdated }
 					} else {
 						return await this.props.client.mutate({
 							mutation: CREATE_PRODUCT,
