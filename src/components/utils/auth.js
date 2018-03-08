@@ -4,7 +4,7 @@ const auth = new auth0.WebAuth({
 	domain: process.env.AUTH_DOMAIN,
   clientID: process.env.AUTH_ID,
   redirectUri: process.env.AUTH_REDIRECT,
-  audience: process.env.AUTH_AUDIENCE,
+  
   responseType: 'token id_token',
   scope: 'openid, profile'
 })

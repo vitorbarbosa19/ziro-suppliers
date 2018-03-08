@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withApollo } from 'react-apollo'
 import { Image } from 'cloudinary-react'
 import { verifyCnpj } from './utils/verifyCnpj'
 import { formatCnpj } from './utils/formatCnpj'
@@ -14,7 +15,7 @@ import SvgSpinner from './icons/SvgSpinner'
 import { outerContainer, innerContainer, illustration, info, submit, submitOnHover, tabs, tab,
 	tabActive, tabContent, input, field, icon, spinner, contact, error, uiError, success } from './styles'
 
-export default class Login extends Component {
+class Login extends Component {
 	state = {
 		cnpj: '',
 		email: '',
@@ -253,3 +254,5 @@ export default class Login extends Component {
 		)
 	}
 }
+
+export default withApollo(Login)

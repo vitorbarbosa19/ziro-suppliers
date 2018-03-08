@@ -1,6 +1,7 @@
 import { signup } from '../../utils/auth'
+import CREATE_USER from '../mutations/CREATE_USER'
 
-export const registerUser = (that) => async () => {
+export const registerUser = (that) => async (mutate) => {
 	const emailIsValid = that.state.email.includes('@') && that.state.email.includes('.com')
 	const passwordIsValid = that.state.password.length > 5
 	if (emailIsValid && passwordIsValid) {
@@ -15,7 +16,7 @@ export const registerUser = (that) => async () => {
 				city: that.state.city,
 				area: that.state.area
 			}
-		}, (error) => {
+		}, async (error, response) => {
 			if (error) {
 				console.log(error)
 				that.props.changeUiState('REGISTER_ERROR')		
@@ -38,6 +39,15 @@ export const registerUser = (that) => async () => {
 					tabOneIsActive: true,
 					tabTwoIsActive: false
 				})
+				try {
+					const mutationResult = await that.props.client.mutate({
+						variables: { authProvider: { auth0: { idToken: response.Id } } },
+						mutation: CREATE_USER
+					})
+					console.log(mutationResult)
+				} catch (error) {
+					console.log(error)
+				}
 			}
 		})
 	}
