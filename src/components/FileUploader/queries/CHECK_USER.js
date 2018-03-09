@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost'
 
 export default gql`
-	mutation CREATE_USER ($brand: String!) {
-		createUser (brand: $brand) {
+	query CHECK_USER ($brand: String!) {
+		User (brand: $brand) {
 			id
 			brand
 		}

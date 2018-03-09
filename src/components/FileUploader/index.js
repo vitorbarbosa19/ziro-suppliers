@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withApollo } from 'react-apollo'
 import CHECK_PRODUCT from './queries/CHECK_PRODUCT'
+import CHECK_USER from './queries/CHECK_USER'
 import CREATE_PRODUCT from './mutations/CREATE_PRODUCT'
 import UPDATE_PRODUCT from './mutations/UPDATE_PRODUCT'
 import UPDATE_GRID from './mutations/UPDATE_GRID'
@@ -17,6 +18,12 @@ class FileUploader extends Component {
 		reader.onload = async () => {
 			const products = parseCSV(reader.result)
 			try {
+				const { data: { User: { id: productOwner } } } = await this.props.client.query({
+					query: CHECK_USER,
+					variables: {
+						brand: this.props.userName
+					}
+				})
 				const result = await Promise.all(products.map( async (product) => {
 					const { data: { Product: productExists } } = await this.props.client.query({
 						query: CHECK_PRODUCT,
@@ -55,7 +62,8 @@ class FileUploader extends Component {
 									color: product.Cor,
 									size: product.Tamanho,
 									quantity: product.Estoque
-								}
+								},
+								ownerId: productOwner
 							}
 						})
 					}
@@ -64,6 +72,8 @@ class FileUploader extends Component {
 				this.uploadButton.value = ''
 				console.log(result)
 			} catch (error) {
+				/* clear file selection so that user can select again */
+				this.uploadButton.value = ''
 				console.log(error)
 			}
 		}

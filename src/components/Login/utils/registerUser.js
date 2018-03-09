@@ -21,26 +21,31 @@ export const registerUser = (that) => async (mutate) => {
 				console.log(error)
 				that.props.changeUiState('REGISTER_ERROR')		
 			} else {
-				that.props.changeUiState('REGISTER_OK')
-				that.setState({
-					cnpj: '',
-					email: '',
-					password: '',
-					name: '',
-					city: '',
-					area: '',
-					errorCnpj: '',
-					errorEmail: '',
-					errorPassword: '',
-					cnpjIsInvalid: false,
-					isManufacturer: false,
-					registerSuccess: true,
-					buttonIsHovered: false,
-					tabOneIsActive: true,
-					tabTwoIsActive: false
-				})
 				try {
-					await that.props.client.mutate({ mutation: CREATE_USER })
+					await that.props.client.mutate({
+						mutation: CREATE_USER,
+						variables: {
+							brand: that.state.name
+						}
+					})
+					that.props.changeUiState('REGISTER_OK')
+					that.setState({
+						cnpj: '',
+						email: '',
+						password: '',
+						name: '',
+						city: '',
+						area: '',
+						errorCnpj: '',
+						errorEmail: '',
+						errorPassword: '',
+						cnpjIsInvalid: false,
+						isManufacturer: false,
+						registerSuccess: true,
+						buttonIsHovered: false,
+						tabOneIsActive: true,
+						tabTwoIsActive: false
+					})
 				} catch (error) {
 					console.log(error)
 				}
