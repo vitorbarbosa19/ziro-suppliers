@@ -4,7 +4,6 @@ import CHECK_PRODUCT from './queries/CHECK_PRODUCT'
 import CREATE_PRODUCT from './mutations/CREATE_PRODUCT'
 import UPDATE_PRODUCT from './mutations/UPDATE_PRODUCT'
 import UPDATE_GRID from './mutations/UPDATE_GRID'
-import CREATE_USER from './mutations/CREATE_USER'
 import parseCSV from './utils/parseCSV'
 import { Image } from 'cloudinary-react'
 import { dropZone, title, uploadOnHover, upload } from './styles'
@@ -45,11 +44,6 @@ class FileUploader extends Component {
 						})
 						return { productUpdated, gridUpdated }
 					} else {
-						const data = await this.props.client.mutate({
-							mutation: CREATE_USER,
-							variables: { authProvider: { auth0: { idToken: localStorage.getItem('id') } } }
-						})
-						console.log(data)
 						return await this.props.client.mutate({
 							mutation: CREATE_PRODUCT,
 							variables: {

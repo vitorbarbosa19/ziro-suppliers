@@ -42,7 +42,7 @@ export default class Menu extends Component {
 									color={'rgba(48,62,77,0.80)'}
 								/>
 								<span style={username}>{this.props.userName}</span>
-								
+								<span>{formatCnpj(this.props.userCnpj)}</span>
 								<button
 									style={this.state.buttonIsHovered ? logoutOnHover : logout}
 									onClick={this.props.logout}

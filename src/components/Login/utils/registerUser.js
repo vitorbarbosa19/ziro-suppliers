@@ -40,11 +40,7 @@ export const registerUser = (that) => async (mutate) => {
 					tabTwoIsActive: false
 				})
 				try {
-					const mutationResult = await that.props.client.mutate({
-						variables: { authProvider: { auth0: { idToken: response.Id } } },
-						mutation: CREATE_USER
-					})
-					console.log(mutationResult)
+					await that.props.client.mutate({ mutation: CREATE_USER })
 				} catch (error) {
 					console.log(error)
 				}
