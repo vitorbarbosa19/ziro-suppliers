@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import { withApollo } from 'react-apollo'
-import CHECK_PRODUCT from './queries/CHECK_PRODUCT'
-import CHECK_USER from './queries/CHECK_USER'
-import CREATE_PRODUCT from './mutations/CREATE_PRODUCT'
-import UPDATE_PRODUCT from './mutations/UPDATE_PRODUCT'
-import UPDATE_GRID from './mutations/UPDATE_GRID'
-import parseCSV from './utils/parseCSV'
+import loadCSV from './utils/loadCSV'
+import loadImage from './utils/loadImage'
 import { Image } from 'cloudinary-react'
 import { dropZone, title, uploadOnHover, upload } from './styles'
 
@@ -14,74 +10,20 @@ class FileUploader extends Component {
 		buttonIsHovered: false
 	}
 	handleFile = () => {
-		const reader = new FileReader()
-		reader.onload = async () => {
-			const products = parseCSV(reader.result)
-			try {
-				const { data: { User: { id: productOwner } } } = await this.props.client.query({
-					query: CHECK_USER,
-					variables: {
-						brand: this.props.userName
-					}
-				})
-				const result = await Promise.all(products.map( async (product) => {
-					const { data: { Product: productExists } } = await this.props.client.query({
-						query: CHECK_PRODUCT,
-						variables: {
-							reference: product.Referência
-						}
-					})
-					if (productExists) {
-						const { data: { updateProduct: productUpdated } } = await this.props.client.mutate({
-							mutation: UPDATE_PRODUCT,
-							variables: {
-								id: productExists.id,
-								description: product.Descrição,
-								price: product.Preço
-							}
-						})
-						const { data: { updateGrid: gridUpdated } } = await this.props.client.mutate({
-							mutation: UPDATE_GRID,
-							variables: {
-								id: productExists.grid.id,
-								color: product.Cor,
-								size: product.Tamanho,
-								quantity: product.Estoque
-							}
-						})
-						return { productUpdated, gridUpdated }
-					} else {
-						return await this.props.client.mutate({
-							mutation: CREATE_PRODUCT,
-							variables: {
-								brand: this.props.userName,
-								reference: product.Referência,
-								description: product.Descrição,
-								price: product.Preço,
-								grid: {
-									color: product.Cor,
-									size: product.Tamanho,
-									quantity: product.Estoque
-								},
-								ownerId: productOwner
-							}
-						})
-					}
-				}))
-				/* clear file selection so that user can select again */
-				this.uploadButton.value = ''
-				console.log(result)
-			} catch (error) {
-				/* clear file selection so that user can select again */
-				this.uploadButton.value = ''
-				console.log(error)
+		[...this.uploadButton.files].map( (file) => {
+			if (/^text\/csv$/.test(file.type)) {
+				const reader = new FileReader()
+				reader.onload = loadCSV(this).bind(null, reader)
+				reader.readAsText(file)
 			}
-		}
-		reader.readAsText(...this.uploadButton.files)
+			if (/^image\/(png|jpeg)$/.test(file.type)) {
+				const reader = new FileReader()
+				reader.onload = loadImage(this).bind(null, reader)
+				reader.readAsDataURL(file)
+			}
+		})
 	}
-	clickInput = () => {
-		this.uploadButton.click()
-	}
+	clickInput = () => { this.uploadButton.click() }
 	buttonHoverIn = () => { this.setState({ buttonIsHovered: true }) }
 	buttonHoverOut = () => { this.setState({ buttonIsHovered: false }) }
 	render = () => (
