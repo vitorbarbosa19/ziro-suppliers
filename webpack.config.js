@@ -41,7 +41,7 @@ const config = {
 	devServer: { historyApiFallback: true } // config for webpack-dev-server when using react-router
 }
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.npm_lifecycle_event === 'dev') {
 	const credentials = require('./credentials')
 	config.plugins.push(
 		new webpack.DefinePlugin({
@@ -58,7 +58,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 if (process.env.NODE_ENV === 'production') {
 	config.plugins.push(
-		
+		// new webpack.optimize.UglifyJsPlugin(), <- CAUSES BUILD ERRORS
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
