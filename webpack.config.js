@@ -41,7 +41,7 @@ const config = {
 	devServer: { historyApiFallback: true } // config for webpack-dev-server when using react-router
 }
 
-if (process.env.npm_lifecycle_event === 'dev') {
+if (process.env.NODE_ENV !== 'production') {
 	const credentials = require('./credentials')
 	config.plugins.push(
 		new webpack.DefinePlugin({
