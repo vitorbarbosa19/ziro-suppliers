@@ -58,7 +58,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 if (process.env.NODE_ENV === 'production') {
 	config.plugins.push(
-		new webpack.optimize.UglifyJsPlugin(),
+		
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
