@@ -62,7 +62,6 @@ if (process.env.npm_lifecycle_event === 'build') {
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: JSON.stringify('production'),
 				AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
 				AUTH_ID: JSON.stringify(process.env.AUTH_ID),
 				AUTH_REDIRECT: JSON.stringify(process.env.AUTH_REDIRECT),

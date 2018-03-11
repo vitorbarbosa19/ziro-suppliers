@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --open",
-    "build": "NODE_ENV='production' webpack -p"
+    "build": "webpack -p"
   },
   "keywords": [
     "react",
