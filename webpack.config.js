@@ -48,10 +48,10 @@ const config = {
 }
 
 if (!development) {
-	config.plugins.push([
+	config.plugins.push(
 		// new webpack.optimize.UglifyJsPlugin(), <- CAUSES BUILD ERRORS
 		new webpack.optimize.ModuleConcatenationPlugin()	
-	])
+	)
 }
 
 module.exports = config
