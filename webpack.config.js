@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
+const development = process.env.npm_lifecycle_event === 'dev'
 
 const config = {
 	entry: './src/index.js',
@@ -16,14 +17,8 @@ const config = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: [
-							'@babel/preset-env',
-							'@babel/preset-react'
-						],
-						plugins: [
-							'@babel/transform-runtime',
-							'@babel/plugin-proposal-class-properties'
-						]
+						presets: ['@babel/preset-env', '@babel/preset-react'],
+						plugins: ['@babel/transform-runtime', '@babel/plugin-proposal-class-properties']
 					}
 				}
 			},
@@ -37,39 +32,24 @@ const config = {
 			}
 		]
 	},
-	plugins: [ new HtmlWebpackPlugin({ template: './src/index.html' }) ],
+	plugins: [
+		new HtmlWebpackPlugin({ template: './src/index.html' }),
+		new webpack.DefinePlugin({
+			'process.env': {
+				AUTH_DOMAIN: JSON.stringify(development ? require('./credentials').AUTH_DOMAIN : process.env.AUTH_DOMAIN),
+				AUTH_ID: JSON.stringify(development ? require('./credentials').AUTH_ID : process.env.AUTH_ID),
+				AUTH_REDIRECT: JSON.stringify(development ? require('./credentials').AUTH_REDIRECT : process.env.AUTH_REDIRECT),
+				AUTH_AUDIENCE: JSON.stringify(development ? require('./credentials').AUTH_AUDIENCE : process.env.AUTH_AUDIENCE),
+				GRAPHQL_ENDPOINT: JSON.stringify(development ? require('./credentials').GRAPHQL_ENDPOINT : process.env.GRAPHQL_ENDPOINT)
+			}
+		})
+	],
 	devServer: { historyApiFallback: true } // config for webpack-dev-server when using react-router
 }
 
-if (process.env.npm_lifecycle_event === 'dev') {
-	const credentials = require('./credentials')
-	config.plugins.push(
-		new webpack.DefinePlugin({
-			'process.env': {
-				AUTH_DOMAIN: JSON.stringify(credentials.AUTH_DOMAIN),
-				AUTH_ID: JSON.stringify(credentials.AUTH_ID),
-				AUTH_REDIRECT: JSON.stringify(credentials.AUTH_REDIRECT),
-				AUTH_AUDIENCE: JSON.stringify(credentials.AUTH_AUDIENCE),
-				GRAPHQL_ENDPOINT: JSON.stringify(credentials.GRAPHQL_ENDPOINT)
-			}
-		})
-	)
-}
-
-if (process.env.npm_lifecycle_event === 'build') {
-	config.plugins.push(
-		// new webpack.optimize.UglifyJsPlugin(), <- CAUSES BUILD ERRORS
-		new webpack.optimize.ModuleConcatenationPlugin(),
-		new webpack.DefinePlugin({
-			'process.env': {
-				AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
-				AUTH_ID: JSON.stringify(process.env.AUTH_ID),
-				AUTH_REDIRECT: JSON.stringify(process.env.AUTH_REDIRECT),
-				AUTH_AUDIENCE: JSON.stringify(process.env.AUTH_AUDIENCE),
-				GRAPHQL_ENDPOINT: JSON.stringify(process.env.GRAPHQL_ENDPOINT)
-			}
-		})
-	)
-}
+development ? null : config.plugins.push([
+	// new webpack.optimize.UglifyJsPlugin(), <- CAUSES BUILD ERRORS
+	new webpack.optimize.ModuleConcatenationPlugin()	
+])
 
 module.exports = config
