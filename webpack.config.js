@@ -56,7 +56,7 @@ if (process.env.npm_lifecycle_event === 'dev') {
 	)
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.npm_lifecycle_event === 'build') {
 	config.plugins.push(
 		// new webpack.optimize.UglifyJsPlugin(), <- CAUSES BUILD ERRORS
 		new webpack.optimize.ModuleConcatenationPlugin(),
