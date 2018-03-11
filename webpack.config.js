@@ -47,9 +47,11 @@ const config = {
 	devServer: { historyApiFallback: true } // config for webpack-dev-server when using react-router
 }
 
-development ? null : config.plugins.push([
-	// new webpack.optimize.UglifyJsPlugin(), <- CAUSES BUILD ERRORS
-	new webpack.optimize.ModuleConcatenationPlugin()	
-])
+if (!development) {
+	config.plugins.push([
+		// new webpack.optimize.UglifyJsPlugin(), <- CAUSES BUILD ERRORS
+		new webpack.optimize.ModuleConcatenationPlugin()	
+	])
+}
 
 module.exports = config
