@@ -18,7 +18,7 @@ class FileUploader extends Component {
 			}
 			if (/^image\/(png|jpeg)$/.test(file.type)) {
 				const reader = new FileReader()
-				reader.onload = loadImage(this).bind(null, reader.result)
+				reader.onload = loadImage(this).bind(null, reader)
 				reader.readAsDataURL(file)
 			}
 		})
