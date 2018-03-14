@@ -10,5 +10,8 @@ export const container = {
 
 export const content = {
 	gridArea: 'content',
-	alignSelf: 'center'
+	position: 'relative',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
 }

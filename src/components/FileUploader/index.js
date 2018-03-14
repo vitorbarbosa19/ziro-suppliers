@@ -1,42 +1,41 @@
 import React, { Component } from 'react'
 import { withApollo } from 'react-apollo'
-import { Image } from 'cloudinary-react'
 import handleFile from './utils/handleFile'
-import Button from '../basic/Button/index'
-import { dropZone, title } from './styles'
+import preventDefault from './utils/preventDefault'
+import DropZone from './DropZone'
 
 class FileUploader extends Component {
+	state = { isDragged: false }
 	handleFile = handleFile(this)
-	onDrag = (event) => {
-		event.stopPropagation()
-		event.preventDefault()
+	dragEnter = (event) => {
+		preventDefault(event)
+		this.setState({ isDragged: true })
+	}
+	dragLeave = (event) => {
+		preventDefault(event)
+		this.setState({ isDragged: false })
+	}
+	dragOver = (event) => {
+		preventDefault(event)
 	}
 	onDrop = (event) => {
-		event.stopPropagation()
-		event.preventDefault()
+		preventDefault(event)
 		this.uploadButton.files = event.dataTransfer.files
+		this.setState({ isDragged: false })
 	}
+	getInput = (input) => { this.uploadButton = input }
 	clickInput = () => { this.uploadButton.click() }
 	render = () => (
-		<div style={dropZone} onDragEnter={this.onDrag} onDragOver={this.onDrag} onDrop={this.onDrop}>
-			<p style={title}>Cadastro de produtos</p>
-			<Image
-	      cloudName='ziro'
-	      width={window.innerWidth > 500 ? '120' : '90'}
-	      publicId='upload_s0ku2z'
-	      version='1518371844'
-	      format='png'
-	      secure='true'
-   		/>
-			<p>Arraste aqui um arquivo .CSV ou imagens</p>
-			<input
-				style={{display: 'none'}}
-				type='file'
-				onChange={this.handleFile}
-				ref={input => this.uploadButton = input}
-			/>
-			<Button onClick={this.clickInput} text='Procurar arquivo' />
-		</div>
+		<DropZone
+			isDragged={this.state.isDragged}
+			handleFile={this.handleFile}
+			dragEnter={this.dragEnter}
+			dragLeave={this.dragLeave}
+			dragOver={this.dragOver}
+			onDrop={this.onDrop}
+			getInput={this.getInput}
+			clickInput={this.clickInput}
+		/>
 	)
 }
 

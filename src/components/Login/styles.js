@@ -4,6 +4,7 @@ export const outerContainer = {
 	alignItems: 'center',
 	margin: window.innerWidth > 500 ? '0 auto' : '10% 5%',
 	maxWidth: '450px',
+	width: '80%',
 	height: window.innerWidth > 1500 ? '700px' : window.innerWidth > 500 ? '550px' : '500px',
 	borderRadius: window.innerWidth > 500 ? '10px' : '5px',
 	boxShadow: `0px 2px 8px 2px rgba(48,62,77,0.10), 0px 4px 10px 0px rgba(48,62,77,0.05)`,
