@@ -34,7 +34,7 @@ export const dropPopup = {
 	display: 'flex',
 	justifyContent: 'center',
 	alignItems: 'center',
-	backgroundColor: 'rgba(0,0,0,0.4)'
+	backgroundColor: 'rgba(48,62,77,0.4)'
 }
 
 export const drop = Object.assign({}, dropZone, {

@@ -21,6 +21,7 @@ const DropZone = (props) => (
  		/>
 		<p>Arraste aqui um arquivo .CSV e/ou imagens</p>
 		<input
+			multiple={true}
 			style={input}
 			type='file'
 			onChange={props.handleFile}
