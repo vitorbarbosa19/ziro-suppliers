@@ -22,26 +22,3 @@ export const dropZone = {
 	borderRadius: window.innerWidth > 500 ? '50px' : '30px',
 	boxShadow: `0 0 0 1px white, 2px 2px 8px 2px rgba(48,62,77,0.10), 4px 4px 10px 4px rgba(48,62,77,0.05)`
 }
-
-export const upload = {
-	WebkitAppearance: 'none',
-	MozAppearance: 'none',
-	outline: 'none',
-	cursor: 'pointer',
-	width: '30%',
-	border: '1px solid rgba(48,62,77,0.50)',
-	borderRadius: '30px',
-	padding: '10px 0px',
-	fontSize: '1.6rem',
-	fontFamily: 'Work Sans',
-	color: '#FFF',
-	backgroundColor: 'rgba(48,62,77,0.80)',
-	boxShadow: `0px 3px 10px 0px rgba(48,62,77,0.20), 0px 4px 12px 0px rgba(48,62,77,0.10)`,
-	transition: '0.2s ease-in-out'	
-}
-
-export const uploadOnHover  = Object.assign({}, upload, {
-	fontWeight: window.innerWidth > 500 ? '700' : '400',
-	color: window.innerWidth > 500 ? 'rgba(48,62,77,0.80)' : '#FFF',
-	backgroundColor: window.innerWidth > 500 ? '#FFF' : 'rgba(48,62,77,0.80)'
-})

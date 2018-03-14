@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import { withApollo } from 'react-apollo'
 import { Image } from 'cloudinary-react'
 import handleFile from './utils/handleFile'
-import { dropZone, title, uploadOnHover, upload } from './styles'
+import Button from '../basic/Button/index'
+import { dropZone, title } from './styles'
 
 class FileUploader extends Component {
-	state = {
-		buttonIsHovered: false
-	}
 	handleFile = handleFile(this)
 	onDrag = (event) => {
 		event.stopPropagation()
@@ -19,8 +17,6 @@ class FileUploader extends Component {
 		this.uploadButton.files = event.dataTransfer.files
 	}
 	clickInput = () => { this.uploadButton.click() }
-	buttonHoverIn = () => { this.setState({ buttonIsHovered: true }) }
-	buttonHoverOut = () => { this.setState({ buttonIsHovered: false }) }
 	render = () => (
 		<div style={dropZone} onDragEnter={this.onDrag} onDragOver={this.onDrag} onDrop={this.onDrop}>
 			<p style={title}>Cadastro de produtos</p>
@@ -39,14 +35,7 @@ class FileUploader extends Component {
 				onChange={this.handleFile}
 				ref={input => this.uploadButton = input}
 			/>
-			<button
-				style={this.state.buttonIsHovered ? uploadOnHover : upload}
-				onMouseEnter={this.buttonHoverIn}
-				onMouseLeave={this.buttonHoverOut}
-				onClick={this.clickInput}
-			>
-				Procurar arquivo
-			</button>
+			<Button onClick={this.clickInput} text='Procurar arquivo' />
 		</div>
 	)
 }
