@@ -1,33 +1,28 @@
 import React, { Component } from 'react'
 import { withApollo } from 'react-apollo'
-import loadCSV from './utils/loadCSV'
-import loadImage from './utils/loadImage'
 import { Image } from 'cloudinary-react'
+import handleFile from './utils/handleFile'
 import { dropZone, title, uploadOnHover, upload } from './styles'
 
 class FileUploader extends Component {
 	state = {
 		buttonIsHovered: false
 	}
-	handleFile = () => {
-		[...this.uploadButton.files].map( (file) => {
-			if (/^text\/csv$/.test(file.type)) {
-				const reader = new FileReader()
-				reader.onload = loadCSV(this).bind(null, reader)
-				reader.readAsText(file)
-			}
-			if (/^image\/(png|jpeg)$/.test(file.type)) {
-				const reader = new FileReader()
-				reader.onload = loadImage(this).bind(null, reader, file)
-				reader.readAsDataURL(file)
-			}
-		})
+	handleFile = handleFile(this)
+	onDrag = (event) => {
+		event.stopPropagation()
+		event.preventDefault()
+	}
+	onDrop = (event) => {
+		event.stopPropagation()
+		event.preventDefault()
+		this.uploadButton.files = event.dataTransfer.files
 	}
 	clickInput = () => { this.uploadButton.click() }
 	buttonHoverIn = () => { this.setState({ buttonIsHovered: true }) }
 	buttonHoverOut = () => { this.setState({ buttonIsHovered: false }) }
 	render = () => (
-		<div style={dropZone}>
+		<div style={dropZone} onDragEnter={this.onDrag} onDragOver={this.onDrag} onDrop={this.onDrop}>
 			<p style={title}>Cadastro de produtos</p>
 			<Image
 	      cloudName='ziro'
