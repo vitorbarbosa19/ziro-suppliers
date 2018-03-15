@@ -5,7 +5,10 @@ import preventDefault from './utils/preventDefault'
 import DropZone from './DropZone'
 
 class FileUploader extends Component {
-	state = { isDragged: false }
+	state = {
+		isDragged: false,
+		uploadOk: false
+	}
 	handleFile = handleFile(this)
 	dragEnter = (event) => {
 		preventDefault(event)
@@ -27,7 +30,9 @@ class FileUploader extends Component {
 	clickInput = () => { this.uploadButton.click() }
 	render = () => (
 		<DropZone
+			uiState={this.props.uiState}
 			isDragged={this.state.isDragged}
+			uploadOk={this.state.uploadOk}
 			handleFile={this.handleFile}
 			dragEnter={this.dragEnter}
 			dragLeave={this.dragLeave}

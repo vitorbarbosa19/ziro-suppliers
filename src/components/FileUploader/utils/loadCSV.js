@@ -7,6 +7,8 @@ import parseCSV from './parseCSV'
 
 const loadCSV = (that) => async (reader) => {
 	const products = parseCSV(reader.result)
+	that.props.changeUiState('UPLOAD_PRODUCTS')
+	that.setState({ uploadOk: false })
 	try {
 		const { data: { User: { id: productOwner } } } = await that.props.client.query({
 			query: CHECK_USER,
@@ -58,12 +60,12 @@ const loadCSV = (that) => async (reader) => {
 				})
 			}
 		}))
-		/* clear file selection so that the user can select a new file if needed */
-		that.uploadButton.value = ''
+		that.props.changeUiState('UPLOAD_PRODUCTS_OK')
+		that.setState({ uploadOk: true })
 		console.log(result)
 	} catch (error) {
-		/* clear file selection so that the user can select a new file if needed */
-		that.uploadButton.value = ''
+		that.props.changeUiState('UPLOAD_PRODUCTS_ERROR')
+		that.setState({ uploadOk: false })
 		console.log(error)
 	}	
 }

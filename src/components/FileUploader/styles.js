@@ -50,3 +50,27 @@ export const release = {
 export const input = {
 	display: 'none'
 }
+
+export const success = {
+	display: 'flex',
+	flexDirection: window.innerWidth > 500 ? 'row' : 'column',
+	alignItems: 'center',
+	maxWidth: window.innerWidth > 500 ? '300px' : '250px',
+	margin: '30px 0',
+	fontFamily: 'Work Sans',
+	fontSize: window.innerWidth > 500 ? '1.6rem' : '1.5rem',
+	color: '#BFE491',
+	textAlign: 'center'
+}
+
+export const error = {
+	display: 'flex',
+	flexDirection: window.innerWidth > 500 ? 'row' : 'column',
+	alignItems: 'center',
+	maxWidth: '300px',
+	margin: '20px 0 0',
+	fontFamily: 'Work Sans',
+	fontSize: window.innerWidth > 500 ? '1.6rem' : '1.5rem',
+	color: '#F16B6F',
+	textAlign: 'center'
+}
