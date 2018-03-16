@@ -3,15 +3,15 @@ import { gql } from 'apollo-boost'
 export default gql`
 	mutation UPDATE_GRID (
 		$id: ID!,
-		$color: String!,
-		$size: String!,
-		$quantity: String!
+		$cor: String!,
+		$tamanho: String!,
+		$estoque: String!
 	) {
 			updateGrid (
 				id: $id,
-				color: $color,
-				size: $size,
-				quantity: $quantity
+				cor: $cor,
+				tamanho: $tamanho,
+				estoque: $estoque
 			) {
 					id
 				}

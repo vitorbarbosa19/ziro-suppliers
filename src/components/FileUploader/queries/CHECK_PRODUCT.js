@@ -2,14 +2,14 @@ import { gql } from 'apollo-boost'
 
 export default gql`
 	query CHECK_PRODUCT (
-		$reference: String!
+		$referencia: String!
 	) {
 			Product (
-				reference: $reference
+				referencia: $referencia
 			) {
 					id
-					reference
-					grid {
+					referencia
+					grade {
 						id
 					}
 				}
