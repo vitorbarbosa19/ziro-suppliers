@@ -7,7 +7,6 @@ import parseCSV from './parseCSV'
 
 const loadCSV = (that) => async (reader) => {
 	const products = parseCSV(reader.result)
-	console.log(products)
 	// that.props.changeUiState('UPLOAD_PRODUCTS')
 	// that.setState({ uploadOk: false })
 	// try {
