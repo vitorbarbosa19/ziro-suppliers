@@ -11,6 +11,8 @@ export default gql`
 					referencia
 					grade {
 						id
+						cor
+						tamanho
 					}
 				}
 		}

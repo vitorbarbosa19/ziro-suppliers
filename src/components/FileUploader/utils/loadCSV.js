@@ -23,7 +23,6 @@ const loadCSV = (that) => async (reader) => {
 					referencia: product.referencia
 				}
 			})
-			console.log(productExists)
 			if (productExists) {
 				const { data: { updateProduct: productUpdated } } = await that.props.client.mutate({
 					mutation: UPDATE_PRODUCT,
@@ -33,15 +32,25 @@ const loadCSV = (that) => async (reader) => {
 						preco: product.preco
 					}
 				})
-				const { data: { updateGrid: gridUpdated } } = await that.props.client.mutate({
-					mutation: UPDATE_GRID,
-					variables: {
-						id: productExists.grade.id,
-						cor: product.cor,
-						tamanho: product.tamanho,
-						estoque: product.estoque
-					}
+				// add the id to the grid object if it already exists in the database
+				product.grade.map( (newGrid) => {
+					productExists.grade.map( (oldGrid) => {
+						if (newGrid.cor === oldGrid.cor && newGrid.tamanho === oldGrid.tamanho)
+							Object.assign(newGrid, { id: oldGrid.id })
+					})
 				})
+				const gridUpdated = await Promise.all(product.grade.map( async (grid) => {
+					const { data: { updateGrid: update } } = await that.props.client.mutate({
+						mutation: UPDATE_GRID,
+						variables: {
+							id: grid.id,
+							cor: grid.cor,
+							tamanho: grid.tamanho,
+							estoque: grid.estoque
+						}
+					})
+					return update
+				}))
 				return { productUpdated, gridUpdated }
 			} else {
 				return await that.props.client.mutate({
