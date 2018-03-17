@@ -2,6 +2,7 @@ import CHECK_PRODUCT from '../queries/CHECK_PRODUCT'
 import CHECK_USER from '../queries/CHECK_USER'
 import CREATE_PRODUCT from '../mutations/CREATE_PRODUCT'
 import UPDATE_PRODUCT from '../mutations/UPDATE_PRODUCT'
+import CREATE_GRID from '../mutations/CREATE_GRID'
 import UPDATE_GRID from '../mutations/UPDATE_GRID'
 import parseCSV from './parseCSV'
 
@@ -40,16 +41,29 @@ const loadCSV = (that) => async (reader) => {
 					})
 				})
 				const gridUpdated = await Promise.all(product.grade.map( async (grid) => {
-					const { data: { updateGrid: update } } = await that.props.client.mutate({
-						mutation: UPDATE_GRID,
-						variables: {
-							id: grid.id,
-							cor: grid.cor,
-							tamanho: grid.tamanho,
-							estoque: grid.estoque
-						}
-					})
-					return update
+					if (grid.id) {
+						const { data: { updateGrid: update } } = await that.props.client.mutate({
+							mutation: UPDATE_GRID,
+							variables: {
+								id: grid.id,
+								cor: grid.cor,
+								tamanho: grid.tamanho,
+								estoque: grid.estoque
+							}
+						})
+						return update
+					} else {
+						const { data: { createGrid: create } } = await that.props.client.mutate({
+							mutation: CREATE_GRID,
+							variables: {
+								cor: grid.cor,
+								tamanho: grid.tamanho,
+								estoque: grid.estoque,
+								productId: productExists.id
+							}
+						})
+						return create
+					}
 				}))
 				return { productUpdated, gridUpdated }
 			} else {
