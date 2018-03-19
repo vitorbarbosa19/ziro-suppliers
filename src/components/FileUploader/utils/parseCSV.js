@@ -1,15 +1,14 @@
 const parseCSV = (csvFile) => {
 	const [titles, ...rows] = csvFile.split('\n')
 	const products = rows.map( (product) => {
-    const characteristics = titles.split(',')
-    const values = product.split(',')
+    const values = product.split(';')
     const productObject = {
-      referencia: values[0].trim(),
-      descricao: values[1].trim(),
-      preco: values[2].trim(),
+      descricao: values[0].trim(),
+      referencia: values[1].trim(),
+      preco: values[4].trim(),
       grade: [{
-        cor: values[3].trim(),
-        tamanho: values[4].trim(),
+        cor: values[2].trim(),
+        tamanho: values[3].trim(),
         estoque: values[5].trim(),
       }]
     }
