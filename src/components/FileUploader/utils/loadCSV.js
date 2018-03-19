@@ -7,10 +7,10 @@ import UPDATE_GRID from '../mutations/UPDATE_GRID'
 import parseCSV from './parseCSV'
 
 const loadCSV = (that) => async (reader) => {
-	const products = parseCSV(reader.result)
 	that.props.changeUiState('UPLOAD_PRODUCTS')
 	that.setState({ uploadOk: false })
 	try {
+		const products = parseCSV(reader.result)
 		const { data: { User: { id: productOwner } } } = await that.props.client.query({
 			query: CHECK_USER,
 			variables: {
