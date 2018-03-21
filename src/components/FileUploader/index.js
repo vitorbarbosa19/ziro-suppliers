@@ -7,7 +7,8 @@ import DropZone from './DropZone'
 class FileUploader extends Component {
 	state = {
 		isDragged: false,
-		uploadOk: false
+		uploadOk: false,
+		wrongFileType: false
 	}
 	handleFile = handleFile(this)
 	dragEnter = (event) => {
@@ -32,6 +33,7 @@ class FileUploader extends Component {
 		<DropZone
 			uiState={this.props.uiState}
 			isDragged={this.state.isDragged}
+			wrongFileType={this.state.wrongFileType}
 			uploadOk={this.state.uploadOk}
 			handleFile={this.handleFile}
 			dragEnter={this.dragEnter}
