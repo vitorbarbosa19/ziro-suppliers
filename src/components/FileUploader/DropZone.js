@@ -48,6 +48,11 @@ const DropZone = (props) => (
 						<SvgAlert width={'22'} height={'22'} />&nbsp;Erro no upload. Tente mais tarde.
 					</span>
 			}
+			{ props.wrongFileType &&
+					<span style={error}>
+						<SvgAlert width={'22'} height={'22'} />&nbsp;Verifique a extensão do arquivo.
+					</span>
+			}
 			<DropPopup
 				isDragged={props.isDragged}
 				dragLeave={props.dragLeave}
